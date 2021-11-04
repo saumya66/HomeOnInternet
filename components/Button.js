@@ -3,7 +3,7 @@ import styles from "../styles/Layout.module.css"
 
 const Button = ({name})=>{
   return(
-    <button className={styles.button}>{name}</button>
+    <button className={styles.downloadButton}>{name}</button>
   )
 }
 export default Button;
