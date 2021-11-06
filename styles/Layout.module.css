@@ -8,7 +8,7 @@
 .siteContent{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 60%;
 }
 .navbar{
     display: flex;
@@ -16,31 +16,70 @@
     height: 3.8rem;
     justify-content: space-between;
     align-items: center;  
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-size: 1.5rem;
+   
+}
+
+.homeNavItem{
+  font-size: 2rem;
+  padding-bottom: 5px;
 
 }
 
 .navItems{
   display: flex;
-  width : 50%; 
+  width : 38%; 
   justify-content: space-around;
 }
 
 .navbarItem{
-  color: white;
+  display: inline-block;
+	cursor: pointer;
+	position: relative;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  font-size: 1.5rem;
+}
+.navbarItem:after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	height: 2px;
+	bottom: 0;
+	left: 0;
+	background-color: var(--color-text-primary);
+	transform-origin: bottom right;
+	transition: transform 0.25s ease-out;
+}
+.navbarItem:hover:after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}
+.currItem {
+	display: inline-block;
+	position: relative;
+	border-bottom: 3px solid var(--color-text-primary);
+	cursor: pointer;
 }
 
+
 .downloadButton{
-  background: transparent;
-  border : 1px solid white;
+  /* background: transparent; */
+  border : 0px solid ;
   border-radius : 5px;
   height: 2.5rem;
   width: 6rem;
-  color: white;
-  font-weight: 400;
+  color: var(--color-text-primary);
   font-size:1rem;
   cursor: pointer;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
-.button:active {
+.downloadButton:active {
     transform: scale(0.98);
     /* Scaling button to 0.98 to its original size */
     box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);

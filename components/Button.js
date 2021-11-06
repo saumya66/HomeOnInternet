@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from "../styles/Layout.module.css"
 
-const Button = ({name})=>{
+const Button = ({name, handleClick})=>{
   return(
-    <button className={styles.downloadButton}>{name}</button>
+    <button onClick={(e)=>handleClick(e)} className={styles.downloadButton}>{name}</button>
   )
 }
 export default Button;

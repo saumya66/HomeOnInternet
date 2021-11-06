@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from "next/link";
+import hand from "../public/1.png";
 
 export default function Home() {
   return (
@@ -13,7 +14,14 @@ export default function Home() {
        
       </Head>
       <div className={styles.home}>
-        <p style={{color:"white", fontSize:"2rem", fontWeight:"400"}}>HELLO</p>
+        <div className={styles.header}>
+          <h2 style={{ fontSize:"5rem", fontWeight:"400", marginBottom:0}}>Hello I'm</h2>
+          <div style={{display:"flex"}}>
+            <h1 style={{ textShadow: "-3px -1px 20px rgba(0,0,0,0.24)",  fontSize:"7rem", fontWeight:"600"}}>Saumya</h1>
+
+            {/* <Image src={hand} width={150} height={60}/> */}
+          </div>
+        </div>
       </div>
       
     </div>

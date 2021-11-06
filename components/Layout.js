@@ -1,11 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import Link from 'next/link'
 import styles from "../styles/Layout.module.css"
 import Button from './Button'
 import {faBars,faTimes} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useRouter } from "next/router";
+import saumya from "../public/saumya.png"
+import Image from 'next/image'
  const Layout = ({children})=>{
+    const router = useRouter();
      const [showSideBar, setShowSideBar] = useState(false);
+     const [activeTheme, setActiveTheme] = useState("light");
+     const path = router.asPath.replace("/", "");
+     useEffect(() => {
+         document.body.dataset.theme=activeTheme;
+     }, [activeTheme])
     return(
         <div className={styles.siteLayout}>
            <div className={styles.siteContent}>  
@@ -17,22 +26,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
                             : <FontAwesomeIcon icon={faTimes} height="28" color="white"/>
                         }
                     </div>
-                    <p style={{color : "white",fontSize:"2rem"}} >Saumya</p>
+                    <Link href={"/"}>
+                        <p className={styles.homeNavItem} >Saumya</p>
+                    </Link>
+                    {/* <Image src={saumya} alt="" width="40"  height="40"/> */}
                     <div className={styles.navItems}>
-                        <Link href={"/"}>
-                            <p className={styles.navbarItem}>Home</p>
-                        </Link>
                         <Link href={"/projects"}>
-                            <p  className={styles.navbarItem}>Projects</p>
+                            <p  className={path==="projects" ? styles.currItem :  styles.navbarItem}>Projects</p>
                         </Link>
                         <Link href={"/work"}>
-                            <p  className={styles.navbarItem}>Work</p>
+                            <p  className={path==="work" ? styles.currItem : styles.navbarItem}>Work</p>
                         </Link>
                         <Link href={"/blogs"}>
-                            <p  className={styles.navbarItem}>Blogs</p>
+                            <p  className={path==="blogs" ? styles.currItem : styles.navbarItem}>Blogs</p>
                         </Link>
                     </div>
-                    <Button name={"Download"}/>
+                     <Button name={"Download"} handleClick={()=>setActiveTheme(activeTheme==="light"?"dark":"light")} />
                 </div>
                 
                
