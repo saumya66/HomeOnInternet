@@ -54,16 +54,19 @@ import Image from 'next/image'
                 
                     <div className={styles.sideNavItems}>
                         <Link href={"/"}>
-                            <p className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>Home</p>
+                            <p className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>home</p>
                         </Link>
                         <Link href={"/projects"}>
-                            <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>Projects</p>
+                            <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>projects</p>
                         </Link>
-                        <Link href={"/work"}>
-                            <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>Work</p>
+                        <Link href={"/videos"}>
+                            <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>videos</p>
                         </Link>
                         <Link href={"/blogs"}>
-                            <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>Blogs</p>
+                            <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>blogs</p>
+                        </Link>
+                        <Link href={"/contact"}>
+                            <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>contact</p>
                         </Link>
                     </div>
 
