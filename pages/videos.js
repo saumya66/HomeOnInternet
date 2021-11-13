@@ -6,7 +6,7 @@ const Videos = ({youtubeData})=>{
     const [data, setData] = useState([]);
     useEffect(() => {
 		setData(youtubeData?.items)
-	}, []);
+	}, [youtubeData?.items]);
     return(
         <div className={styles.project}>
             {console.log(data)}

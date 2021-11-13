@@ -16,12 +16,12 @@ const Card = ({type,thumbnailUrl,githubUrl, liveUrl,videoTitle,projectTitle,proj
              <div className={styles.imageContainer}>
                 <div className={styles.projectLinksCont}> 
                     <div className={styles.linkCont}>
-                        <a href={liveUrl} alt="" target="_blank">
+                        <a href={liveUrl} alt="" target="_blank" rel="noreferrer">
                             <FontAwesomeIcon icon={faEye} size="2x" color="white"/>
                         </a>
                     </div>
                     <div className={styles.linkCont}>
-                        <a href={githubUrl} alt="" target="_blank">
+                        <a href={githubUrl} alt="" target="_blank" rel="noreferrer">
                             <FontAwesomeIcon icon={faGithub}  size="2x" color="white"/>
                         </a>
                     </div>

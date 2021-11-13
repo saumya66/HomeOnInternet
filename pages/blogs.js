@@ -5,7 +5,7 @@ const Blogs = ({blogData})=>{
     const [data, setData] = useState([]);
     useEffect(() => {
 		setData(blogData?.items)
-	}, []);
+  	}, [blogData?.items]);
     return(
         <div className={styles.project}>
              {
