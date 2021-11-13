@@ -1,7 +1,5 @@
 .project{
     width: 100%;
-    padding-left: 22%;
-    padding-right: 22%;
     height: 90vh;
     display: flex;
     flex-wrap: wrap;
@@ -97,4 +95,13 @@
 }
 .linkCont:hover{
     background: rgba(255, 255, 255, 0.2);
+}
+@media only screen and (max-width: 600px) {
+    .project{
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+    .projectCard{
+        width: 80%;
+    }
 }
