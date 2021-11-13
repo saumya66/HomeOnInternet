@@ -15,7 +15,7 @@ export default function Home() {
       </Head>
       <div className={styles.home}>
         <div className={styles.header}>
-          <h2 style={{ fontSize:"5rem", fontWeight:"400", marginBottom:0}}>Hello I'm</h2>
+          <h2 style={{ fontSize:"5rem", fontWeight:"400", marginBottom:0}}>Hello I&apos;m</h2>
           <div style={{display:"flex"}}>
             <h1 style={{ textShadow: "-3px -1px 20px rgba(0,0,0,0.24)",  fontSize:"7rem", fontWeight:"600"}}>Saumya</h1>
 
