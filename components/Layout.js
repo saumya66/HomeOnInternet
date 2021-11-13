@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from "next/router";
 import saumya from "../public/saumya.png"
 import Image from 'next/image'
+
  const Layout = ({children})=>{
     const router = useRouter();
      const [showSideBar, setShowSideBar] = useState(false);
@@ -32,13 +33,16 @@ import Image from 'next/image'
                     {/* <Image src={saumya} alt="" width="40"  height="40"/> */}
                     <div className={styles.navItems}>
                         <Link href={"/projects"}>
-                            <p  className={path==="projects" ? styles.currItem :  styles.navbarItem}>Projects</p>
+                            <p  className={path==="projects" ? styles.currItem :  styles.navbarItem}>projects</p>
                         </Link>
-                        <Link href={"/work"}>
-                            <p  className={path==="work" ? styles.currItem : styles.navbarItem}>Work</p>
+                        <Link href={"/videos"}>
+                            <p  className={path==="videos" ? styles.currItem : styles.navbarItem}>videos</p>
                         </Link>
                         <Link href={"/blogs"}>
-                            <p  className={path==="blogs" ? styles.currItem : styles.navbarItem}>Blogs</p>
+                            <p  className={path==="blogs" ? styles.currItem : styles.navbarItem}>blogs</p>
+                        </Link>
+                        <Link href={"/contact"}>
+                            <p  className={path==="contact" ? styles.currItem : styles.navbarItem}>contact</p>
                         </Link>
                     </div>
                      <Button name={"Download"} handleClick={()=>setActiveTheme(activeTheme==="light"?"dark":"light")} />
@@ -46,7 +50,7 @@ import Image from 'next/image'
                 
                
                 
-                {!showSideBar ? children : 
+                {!showSideBar ? <div className={styles.dataContainer}>{children}</div> : 
                 
                     <div className={styles.sideNavItems}>
                         <Link href={"/"}>

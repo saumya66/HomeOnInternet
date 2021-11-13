@@ -2,24 +2,35 @@
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .siteContent{
     display: flex;
     flex-direction: column;
-    width: 60%;
-}
+    width: 100%;
+    align-items: center;
+   
+  }
+  .dataContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height : 90vh;
+    overflow: hidden;
+    overflow-y:auto 
+    
+  }
 .navbar{
     display: flex;
-    width: 100%;
+    width: 60%;
     height: 3.8rem;
     justify-content: space-between;
     align-items: center;  
     font-weight: 600;
     color: var(--color-text-primary);
     font-size: 1.5rem;
-   
 }
 
 .homeNavItem{
@@ -30,7 +41,7 @@
 
 .navItems{
   display: flex;
-  width : 38%; 
+  width : 45%; 
   justify-content: space-around;
 }
 

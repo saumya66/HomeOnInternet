@@ -26,14 +26,16 @@ body[data-theme="light"]{
   --background-image :  url(../public/lightBackg.jpg);
   --color-text-primary : black;
   --background-gradient :   linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
-  --theme-color :  white 
-/*  linear-gradient(132deg, rgba(255,255,255,1) 29%, rgba(251,200,212,1) 83%); */
+  --theme-color :  white ;
+  --object-color : #ffffff;
+  /*  linear-gradient(132deg, rgba(255,255,255,1) 29%, rgba(251,200,212,1) 83%); */
 }
 
 body[data-theme="dark"]{
   --color-text-primary : white;
   --background-image :  url(../public/backg3.jpg);
   --background-gradient : linear-gradient(315deg, #000000 0%, #414141 74%);;
+  --object-color : #262837;
   --theme-color : black
 }
 body{

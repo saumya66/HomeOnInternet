@@ -1,13 +1,16 @@
 import React from "react";
-import ProjectCard from "../components/ProjectCard";
+import Card from "../components/Card";
 import styles from "../styles/Project.module.css"
 const Projects = ()=>{
     return(
         <div className={styles.project}>
-            <ProjectCard/>
-            <ProjectCard/>
+            <Card type="project" projectName="Cool" projectDesc="Cool"/>
+            <Card type="project" projectName="Cool" projectDesc="Cool"/>
+            <Card type="project" projectName="Cool" projectDesc="Cool"/>
+             
         </div>
     )
 }
+
 
 export default Projects
