@@ -10,7 +10,7 @@ const Blogs = ({blogData})=>{
         <div className={styles.project}>
              {
                  data?.length && 
-                 data.map((blog,index)=><Card type="blog" key={index} thumbnailUrl={"https://cdn-images-1.medium.com/max/1024/1*MGqai7niJZYKbbZK2KxalQ.png"} blogTitle={blog.title} publishDate={blog.pubDate} link={blog.link} />)
+                 data.map((blog,index)=><Card type="blog" key={index} thumbnailUrl={blog.thumbnail} blogTitle={blog.title} publishDate={blog.pubDate} link={blog.link} />)
              }
         </div>
     )
