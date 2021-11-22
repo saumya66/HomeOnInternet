@@ -8,8 +8,8 @@ const Projects = ()=>{
         <div className={styles.project}>
             {
                 
-                projects.map(project => 
-                    <Card type="project" thumbnailUrl={project.thumbnail} projectTitle={project.name} projectDesc={project.description} liveUrl={project.live} githubUrl={project.github}/>
+                projects.map((project,index) => 
+                    <Card type="project" key={index} thumbnailUrl={project.thumbnail} projectTitle={project.name} projectDesc={project.description} liveUrl={project.live} githubUrl={project.github}/>
                 )
             }
           
