@@ -7,12 +7,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from "next/router";
 import saumya from "../public/saumya.png"
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 
  const Layout = ({children})=>{
     const router = useRouter();
      const [showSideBar, setShowSideBar] = useState(false);
      const [activeTheme, setActiveTheme] = useState("light");
      const path = router.asPath.replace("/", "");
+     const spring = {
+        type: "spring",
+        stiffness: 700,
+        damping: 30
+      };
+      
      useEffect(() => {
          document.body.dataset.theme=activeTheme;
      }, [activeTheme])
@@ -45,7 +52,10 @@ import Image from 'next/image'
                             <p  className={path==="contact" ? styles.currItem : styles.navbarItem}>contact</p>
                         </Link>
                     </div>
-                     <Button name={"Download"} handleClick={()=>setActiveTheme(activeTheme==="light"?"dark":"light")} />
+                    <div className={styles.switch} data-theme={activeTheme} onClick={()=>setActiveTheme(activeTheme==="light"?"dark":"light")}>
+                        <motion.div className={styles.handle} whileHover={{ scale: 1.2 }} layout transition={spring} />
+                    </div>
+                     {/* <Button name={"Download"} handleClick={()=>setActiveTheme(activeTheme==="light"?"dark":"light")} /> */}
                 </div>
                 
                

@@ -114,7 +114,28 @@
   color : white;
   margin-bottom: 1rem;
 }
+.switch {
+  width: 75px;
+  height: 38px;
+  background-color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 50px;
+  padding: 10px;
+  cursor: pointer;
+}
 
+.switch[data-theme="dark"] {
+  justify-content: flex-end;
+}
+
+.handle {
+  width: 28px;
+  height: 28px;
+  background-color: white;
+  border-radius: 40px;
+}
 @media only screen and (max-width: 600px) {
     .siteContent{
       display: flex;

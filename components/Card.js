@@ -1,15 +1,27 @@
-import React  from "react";
+import React, { useState }  from "react";
 import styles from "../styles/Project.module.css";
 import Image from "next/image";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faEye } from "@fortawesome/free-regular-svg-icons";
+import { faGithub,faYoutube,faYoutubeSquare } from "@fortawesome/free-brands-svg-icons";
+import { faEye,faPlusSquare,faPlay } from "@fortawesome/free-regular-svg-icons";
 import hackrNews from "../public/projectAssets/hackrnews.jpg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import {motion} from "framer-motion"
 
 const Card = ({type,thumbnailUrl,githubUrl, liveUrl,videoTitle,projectTitle,projectDesc,publishDate,blogTitle, blogDesc, link })=>{
+    const [showIcon, setShowIcon] = useState(false);
+    const variants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+      }
     return(
-        <div className={styles.projectCard}>
+        <motion.div className={styles.projectCard}  
+        initial="hidden"
+        animate="visible"
+        whileHover={{ scale: 1.1 }}
+        // whileTap={{ scale: 0.9 }}
+        variants={variants}
+        >
          
             { type==="project" ?
             <>
@@ -26,29 +38,35 @@ const Card = ({type,thumbnailUrl,githubUrl, liveUrl,videoTitle,projectTitle,proj
                         </a>
                     </div>
                 </div>
-                <Image src={hackrNews} layout='fill'  objectFit='cover'/>
+                <Image src={thumbnailUrl} layout='fill'  objectFit='cover' alt=""  width={2250} height={1390}/>
                 <div className={styles.curve}></div>
             </div>
             <div className={styles.projectInfo}>
-                <h1 className={styles.projectName}>{projectTitle}</h1>
+                <p className={styles.projectName}>{projectTitle}</p>
                 <p className={styles.projectDesc}>{projectDesc}</p>
             </div></> : 
             type==="video" ? 
-            <>
-             <div className={styles.videoImageContainer}>
+            <>             
+             <div onMouseEnter={() => setShowIcon(true)} onMouseLeave={() => setShowIcon(false)} className={styles.videoImageContainer}>
+                <div className={showIcon ? styles.playIcon : styles.hidePlayIcon}>
+                        <a href={link} alt="" target="_blank" rel="noreferrer">
+                            <FontAwesomeIcon icon={faYoutube}  size="5x" color="white"/>
+                        </a>
+                    </div>
                 <Image src={thumbnailUrl} alt={videoTitle} layout='fill'  objectFit='cover'/>
                 <div className={styles.curve}></div>
             </div>
                 <div className={styles.videoInfo}>
-                    <p className={styles.videoName}>{videoTitle}</p>
+                    <a href={link} alt="" target="_blank" rel="noreferrer">
+                        <p className={styles.videoName}>{videoTitle}</p>
+                    </a>
                 </div>
              </> : 
              type==="blog" &&
              <>
                 <div className={styles.imageContainer}>
-                    {console.log(thumbnailUrl)}
                     <Image src={thumbnailUrl} alt="" layout='fill'  width={2250}
-    height={1390}  objectFit='cover'/>
+                    height={1390}  objectFit='cover'/>
                     <div className={styles.curve}></div>
                 </div>
                 <div className={styles.projectInfo}>
@@ -57,7 +75,7 @@ const Card = ({type,thumbnailUrl,githubUrl, liveUrl,videoTitle,projectTitle,proj
                 </div>
              </>
             }
-        </div>
+        </motion.div>
     )
 }
 

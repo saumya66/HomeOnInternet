@@ -12,7 +12,7 @@ const Videos = ({youtubeData})=>{
             {console.log(data)}
             {data?.length && 
                 data.map((video)=>
-                <Card key={video.id.videoId} type="video" videoTitle={video.snippet.title} 
+                <Card key={video.id.videoId} link={`https://www.youtube.com/watch?v=${video.id.videoId}`} type="video" videoTitle={video.snippet.title} 
                 thumbnailUrl={video.snippet.thumbnails.high.url}/>)
                  
             }
