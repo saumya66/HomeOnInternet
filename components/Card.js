@@ -3,24 +3,15 @@ import styles from "../styles/Project.module.css";
 import Image from "next/image";
 import { faGithub,faYoutube,faYoutubeSquare } from "@fortawesome/free-brands-svg-icons";
 import { faEye,faPlusSquare,faPlay } from "@fortawesome/free-regular-svg-icons";
-import hackrNews from "../public/projectAssets/hackrnews.jpg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
 import {motion} from "framer-motion"
 
 const Card = ({type,thumbnailUrl,githubUrl, liveUrl,videoTitle,projectTitle,projectDesc,publishDate,blogTitle, blogDesc, link })=>{
     const [showIcon, setShowIcon] = useState(false);
-    const variants = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1 },
-      }
     return(
-        <motion.div className={styles.projectCard}  
-        initial="hidden"
-        animate="visible"
+        <motion.div className={styles.projectCard}      
         whileHover={{ scale: 1.1 }}
         // whileTap={{ scale: 0.9 }}
-        variants={variants}
         >
          
             { type==="project" ?
