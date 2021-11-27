@@ -12,11 +12,6 @@ const Projects = ()=>{
                     <Card type="project" key={index} thumbnailUrl={project.thumbnail} projectTitle={project.name} projectDesc={project.description} liveUrl={project.live} githubUrl={project.github}/>
                 )
             }
-          
-            {/* <Card type="project" projectName="Cool" projectDesc="Cool"/>
-            <Card type="project" projectName="Cool" projectDesc="Cool"/>
-            <Card type="project" projectName="Cool" projectDesc="Cool"/> */}
-             
         </div>
     )
 }

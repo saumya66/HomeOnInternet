@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import styles from "../styles/Project.module.css"
+import BlogCard from "../components/BlogCard";
 const Blogs = ({blogData})=>{
     const [data, setData] = useState([]);
     useEffect(() => {
@@ -8,12 +9,14 @@ const Blogs = ({blogData})=>{
   	}, [blogData?.items]);
     return(
         <div className={styles.project}>
+          
              {
                  data?.length && 
-                 data.map((blog,index)=><Card type="blog" key={index} thumbnailUrl={blog.thumbnail} blogTitle={blog.title} publishDate={blog.pubDate} link={blog.link} />)
+                 data.map((blog,index)=><BlogCard key={index} thumbnailUrl={blog.thumbnail} blogTitle={blog.title} publishDate={blog.pubDate} link={blog.link} />)
              }
         </div>
     )
+    // <Card type="blog" key={index} thumbnailUrl={blog.thumbnail} blogTitle={blog.title} publishDate={blog.pubDate} link={blog.link} />
 }
 
 export async function getStaticProps(context) {

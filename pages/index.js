@@ -3,8 +3,18 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from "next/link";
 import hand from "../public/1.png";
+import {motion} from "framer-motion"
 
 export default function Home() {
+  const sentence = {
+    hidden:{opacity:0},
+    visible:{
+      opacity:1,
+      transition:{
+        delay:0.5,
+      }
+    }
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -15,9 +25,9 @@ export default function Home() {
       </Head>
       <div className={styles.home}>
         <div className={styles.header}>
-          <h2 style={{ fontSize:"5rem", fontWeight:"400", marginBottom:0}}>Hello I&apos;m</h2>
+          <h2 style={{ fontSize:"5rem", fontWeight:"400", marginBottom:0}}>Hello I&apos;m</ h2>
           <div style={{display:"flex"}}>
-            <h1 style={{ textShadow: "-3px -1px 20px rgba(0,0,0,0.24)",  fontSize:"7rem", fontWeight:"600"}}>Saumya</h1>
+            <motion.h1  initial="hidden" animate="visible"variants={sentence} style={{ textShadow: "-3px -1px 20px rgba(0,0,0,0.24)",  fontSize:"7rem", fontWeight:"600"}}>Saumya</motion.h1>
 
             {/* <Image src={hand} width={150} height={60}/> */}
           </div>

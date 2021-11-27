@@ -78,6 +78,9 @@ import { motion } from 'framer-motion'
                         <Link href={"/contact"}>
                             <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>contact</p>
                         </Link>
+                        <div className={styles.mobileSwitch} data-theme={activeTheme} onClick={()=>setActiveTheme(activeTheme==="light"?"dark":"light")}>
+                            <motion.div className={styles.handle} whileHover={{ scale: 1.2 }} layout transition={spring} />
+                        </div>
                     </div>
 
                 }   
