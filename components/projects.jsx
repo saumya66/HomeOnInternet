@@ -15,7 +15,7 @@ export const projects = [
     },
     {
         name : "Admin System 👩‍🎓",
-        description : "A full stack MERN Webapp for a Admin to manage courses pf students.",
+        description : "A full stack MERN Webapp for a Admin to manage courses of students.",
         github : "https://github.com/saumya66/AdminSystem-MERN#readme",
         live : "https://mainteny-admin.netlify.app/",
         thumbnail : "/admin.webp",

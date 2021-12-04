@@ -75,4 +75,16 @@ p {
   ::-webkit-scrollbar-thumb:hover {
 	background: #6725ff; 
   }
- 
+  #nprogress .bar {
+    background: #6725ff !important;
+    height:5px!important; 
+  }
+  
+  #nprogress .peg {
+    /* box-shadow: 0 0 10px white, 0 0 5px white; */
+  }
+  
+  #nprogress .spinner-icon {
+    border-top-color: #6725ff!important;
+    border-left-color: #6725ff!important;
+  }

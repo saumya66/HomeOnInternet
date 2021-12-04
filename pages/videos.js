@@ -1,22 +1,46 @@
 import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import styles from "../styles/Project.module.css"
+import Head from 'next/head'
+import { motion } from "framer-motion";
 
 const Videos = ({youtubeData})=>{
     const [data, setData] = useState([]);
+    const container = {
+      hidden: { opacity: 1, scale: 0 },
+      visible: {
+        opacity: 1,
+        scale: 1,
+        transition: {
+          delayChildren: 0.3,
+          staggerChildren: 0.2
+        }
+      }
+    };
+  
     useEffect(() => {
 		setData(youtubeData?.items)
 	}, [youtubeData?.items]);
     return(
-        <div className={styles.project}>
-            {console.log(data)}
+        <motion.div className={styles.project} variants={container}
+        initial="hidden"
+        animate="visible">
+             <Head>
+                    <title>Videos - Saumya Ranjan Nayak</title>
+                    <meta name="description" content="Checkout youtube videos created by Saumya Ranjan Nayak!" />
+                    <meta property="og:title" content="Videos - Saumya Ranjan Nayak"/>
+                    <meta property="og:description" content="Checkout youtube videos created by Saumya Ranjan Nayak!" />
+                    <meta property="og:url" content="https://home-on-internet.vercel.app/videos" />
+                    <meta property="og:type" content="website" />
+                    <link rel="icon" href="/favicon.ico" />
+             </Head>
             {data?.length && 
                 data.map((video)=>
                 <Card key={video.id.videoId} link={`https://www.youtube.com/watch?v=${video.id.videoId}`} type="video" videoTitle={video.snippet.title} 
                 thumbnailUrl={video.snippet.thumbnails.high.url}/>)
                  
             }
-        </div>
+        </motion.div>
     )
 }
 

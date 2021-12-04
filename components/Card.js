@@ -8,9 +8,18 @@ import {motion} from "framer-motion"
 
 const Card = ({type,thumbnailUrl,githubUrl, liveUrl,videoTitle,projectTitle,projectDesc,publishDate,blogTitle, blogDesc, link })=>{
     const [showIcon, setShowIcon] = useState(false);
+      
+    const item = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+          y: 0,
+          opacity: 1
+        }
+      };
     return(
         <motion.div className={styles.projectCard}      
         whileHover={{ scale: 1.1 }}
+        variants={item}
         // whileTap={{ scale: 0.9 }}
         >
          
@@ -18,16 +27,16 @@ const Card = ({type,thumbnailUrl,githubUrl, liveUrl,videoTitle,projectTitle,proj
             <>
              <div className={styles.imageContainer}>
                 <div className={styles.projectLinksCont}> 
-                    <div className={styles.linkCont}>
-                        <a href={liveUrl} alt="" target="_blank" rel="noreferrer">
-                            <FontAwesomeIcon icon={faEye} size="2x" color="white"/>
-                        </a>
-                    </div>
-                    <div className={styles.linkCont}>
-                        <a href={githubUrl} alt="" target="_blank" rel="noreferrer">
+                    <a href={githubUrl} alt="" target="_blank" rel="noreferrer">
+                        <div className={styles.linkCont}>
                             <FontAwesomeIcon icon={faGithub}  size="2x" color="white"/>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
+                    <a href={liveUrl} alt="" target="_blank" rel="noreferrer">
+                        <div className={styles.linkCont}>
+                                <FontAwesomeIcon icon={faEye} size="2x" color="white"/>
+                        </div>
+                    </a>
                 </div>
                 <Image src={thumbnailUrl} layout='fill'  objectFit='cover' alt=""  width={2250} height={1390}/>
                 <div className={styles.curve}></div>
@@ -39,12 +48,10 @@ const Card = ({type,thumbnailUrl,githubUrl, liveUrl,videoTitle,projectTitle,proj
             type==="video" ? 
             <>             
              <div onMouseEnter={() => setShowIcon(true)} onMouseLeave={() => setShowIcon(false)} className={styles.videoImageContainer}>
-                <div className={showIcon ? styles.playIcon : styles.hidePlayIcon}>
-                        <a href={link} alt="" target="_blank" rel="noreferrer">
-                            <FontAwesomeIcon icon={faYoutube}  size="5x" color="white"/>
-                        </a>
-                    </div>
-                <Image src={thumbnailUrl} alt={videoTitle} layout='fill'  objectFit='cover'/>
+                
+                <a href={link} alt="" target="_blank" rel="noreferrer">
+                    <Image src={thumbnailUrl} alt={videoTitle} layout='fill'  objectFit='cover'/>
+                </a>
                 <div className={styles.curve}></div>
             </div>
                 <div className={styles.videoInfo}>

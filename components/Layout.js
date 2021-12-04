@@ -5,14 +5,12 @@ import Button from './Button'
 import {faBars,faTimes} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from "next/router";
-import saumya from "../public/saumya.png"
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 
  const Layout = ({children})=>{
     const router = useRouter();
      const [showSideBar, setShowSideBar] = useState(false);
-     const [activeTheme, setActiveTheme] = useState("light");
+     const [activeTheme, setActiveTheme] = useState((typeof window !== "undefined"  && localStorage.getItem("theme")!==null) ?localStorage.getItem("theme") : "dark");
      const path = router.asPath.replace("/", "");
      const spring = {
         type: "spring",
@@ -22,7 +20,23 @@ import { motion } from 'framer-motion'
       
      useEffect(() => {
          document.body.dataset.theme=activeTheme;
+         localStorage.setItem("theme",activeTheme)
+         console.log("1")
      }, [activeTheme])
+     const variants = {
+        hidden: { opacity: 0, x: -200, y: 0 },
+        enter: { opacity: 1, x: 0, y: 0 },
+        exit: { opacity: 0, x: 0, y: -100 },
+    }
+    useEffect(()=>{
+        console.log("2")
+        if (typeof window !== "undefined") {
+            if(localStorage.getItem("theme")===null)
+                localStorage.setItem("theme","dark");
+            
+        }
+    },[])
+    
     return(
         <div className={styles.siteLayout}>
            <div className={styles.siteContent}>  
@@ -48,8 +62,8 @@ import { motion } from 'framer-motion'
                         <Link href={"/blogs"}>
                             <p  className={path==="blogs" ? styles.currItem : styles.navbarItem}>blogs</p>
                         </Link>
-                        <Link href={"/contact"}>
-                            <p  className={path==="contact" ? styles.currItem : styles.navbarItem}>contact</p>
+                        <Link href={"/reachme"}>
+                            <p  className={path==="reachme" ? styles.currItem : styles.navbarItem}>reachme</p>
                         </Link>
                     </div>
                     <div className={styles.switch} data-theme={activeTheme} onClick={()=>setActiveTheme(activeTheme==="light"?"dark":"light")}>
@@ -60,7 +74,11 @@ import { motion } from 'framer-motion'
                 
                
                 
-                {!showSideBar ? <div className={styles.dataContainer}>{children}</div> : 
+                {!showSideBar ? 
+                        <div className={styles.dataContainer}>
+                    {children}
+                    </div> 
+                    : 
                 
                     <div className={styles.sideNavItems}>
                         <Link href={"/"}>
@@ -75,8 +93,8 @@ import { motion } from 'framer-motion'
                         <Link href={"/blogs"}>
                             <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>blogs</p>
                         </Link>
-                        <Link href={"/contact"}>
-                            <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>contact</p>
+                        <Link href={"/reachme"}>
+                            <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>reachme</p>
                         </Link>
                         <div className={styles.mobileSwitch} data-theme={activeTheme} onClick={()=>setActiveTheme(activeTheme==="light"?"dark":"light")}>
                             <motion.div className={styles.handle} whileHover={{ scale: 1.2 }} layout transition={spring} />
