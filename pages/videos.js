@@ -32,6 +32,7 @@ const Videos = ({youtubeData})=>{
                     <meta property="og:description" content="Checkout youtube videos created by Saumya Ranjan Nayak!" />
                     <meta property="og:url" content="https://home-on-internet.vercel.app/videos" />
                     <meta property="og:type" content="website" />
+                    <meta property="og:image" content="https://user-images.githubusercontent.com/60464414/168478444-0b79ae2e-cd2e-4ca3-b062-f3b2d6ddb7a7.png"/>
                     <link rel="icon" href="/favicon.ico" />
              </Head>
             {data?.length && 

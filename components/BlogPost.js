@@ -1,5 +1,7 @@
 import Head from 'next/head'
+import styles from "../styles/Blog.module.css"
 import { useRouter } from 'next/router'
+
 export default function BlogPost({ children, meta}) {
     const router  = useRouter()
     return (
@@ -13,7 +15,15 @@ export default function BlogPost({ children, meta}) {
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
     </Head>
-      <article>{children}</article>
+    <div className={styles.blog}>
+        <div className={styles.blogContainer}>
+            <p className={styles.blogTitle}>{meta.title}</p>
+            <p className={styles.articleDate}>- Saumya Ranjan Nayak</p>
+            <p className={styles.articleDate}>{meta.date}</p>
+
+            <article className={styles.article}>{children}</article>
+        </div>
+    </div>
     </>
   )
 }
