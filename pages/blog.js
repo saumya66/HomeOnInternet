@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import styles from "../styles/Project.module.css"
+import styles from "../styles/Blog.module.css"
 import Head from 'next/head'
 import BlogCard from "../components/BlogCard";
 import { motion } from "framer-motion";
+import { posts } from "../getAllPosts";
 const Blogs = ({blogData})=>{
     const [data, setData] = useState([]);
     const container = {
@@ -22,7 +23,7 @@ const Blogs = ({blogData})=>{
   	}, [blogData?.items]);
     
     return(
-        <motion.div className={styles.project} variants={container}
+        <motion.div className={styles.blog} variants={container}
         initial="hidden"
         animate="visible">
           <Head>
@@ -34,10 +35,13 @@ const Blogs = ({blogData})=>{
               <meta property="og:type" content="website" />
               <link rel="icon" href="/favicon.ico" />
           </Head>
-              
+             {
+                 posts?.length && 
+                 posts.map((post)=><BlogCard externalBlog={false} key={post.link} post={post}/>)
+             }
              {
                  data?.length && 
-                 data.map((blog,index)=><BlogCard key={index} thumbnailUrl={blog.thumbnail} blogTitle={blog.title} publishDate={blog.pubDate} link={blog.link} />)
+                 data.map((blog,index)=><BlogCard externalBlog={true} key={index} thumbnailUrl={blog.thumbnail} blogTitle={blog.title} publishDate={blog.pubDate} mediumLink={blog.link} meta="" post=""/>)
              }
         </motion.div>
     )

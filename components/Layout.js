@@ -6,8 +6,9 @@ import {faBars,faTimes} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from "next/router";
 import { motion } from 'framer-motion'
+import Head from "next/head";
 
- const Layout = ({children})=>{
+ const Layout = ({children, pageTitle, description })=>{
     const router = useRouter();
      const [showSideBar, setShowSideBar] = useState(false);
      const [activeTheme, setActiveTheme] = useState((typeof window !== "undefined"  && localStorage.getItem("theme")!==null) ?localStorage.getItem("theme") : "dark");
@@ -38,6 +39,8 @@ import { motion } from 'framer-motion'
     },[])
     
     return(
+        <>
+  
         <div className={styles.siteLayout}>
            <div className={styles.siteContent}>  
                 <div className={styles.navbar}>
@@ -59,7 +62,7 @@ import { motion } from 'framer-motion'
                         <Link href={"/videos"}>
                             <p  className={path==="videos" ? styles.currItem : styles.navbarItem}>videos</p>
                         </Link>
-                        <Link href={"/blogs"}>
+                        <Link href={"/blog"}>
                             <p  className={path==="blogs" ? styles.currItem : styles.navbarItem}>blogs</p>
                         </Link>
                         <Link href={"/reachme"}>
@@ -90,7 +93,7 @@ import { motion } from 'framer-motion'
                         <Link href={"/videos"}>
                             <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>videos</p>
                         </Link>
-                        <Link href={"/blogs"}>
+                        <Link href={"/blog"}>
                             <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>blogs</p>
                         </Link>
                         <Link href={"/reachme"}>
@@ -104,6 +107,7 @@ import { motion } from 'framer-motion'
                 }   
             </div>
         </div>
+    </>
     )
 }
 
