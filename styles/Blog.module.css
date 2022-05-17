@@ -49,8 +49,15 @@
     background-color: var(--object-color);
     margin-top :1rem;
     color: var(--color-text-primary);
+    
+}
+.blogCard:hover{
+    cursor: pointer
 }
 
+.blog::-webkit-scrollbar {
+    display: none;
+}
 .blogInfo{
     width: 65%;
     margin-right: 3%;
@@ -90,7 +97,13 @@
 }
  
 @media only screen and (max-width: 600px) {
-    .blogCard{
-        min-height:140px
+    .blog{
+        padding-left: 0%;
+        padding-right: 0%;
     }
+    .blogCard{
+        width:100%;
+        min-height:140px;
+    }
+ 
 }
