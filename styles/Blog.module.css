@@ -106,5 +106,9 @@
         width:100%;
         min-height:140px;
     }
+    .blogContainer{
+        min-height: auto;
+        height: auto;
+    }
  
 }
