@@ -17,7 +17,7 @@
 }
 .blogContainer{
     width: 100%;
-    min-height: 100%;
+    min-height: 90vh;
     height: auto;
     padding:0.8rem;
     padding-inline:1.8rem;
