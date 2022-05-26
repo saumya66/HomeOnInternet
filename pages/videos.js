@@ -3,9 +3,12 @@ import Card from "../components/Card";
 import styles from "../styles/Project.module.css"
 import Head from 'next/head'
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 const Videos = ({youtubeData})=>{
-    const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
+  const router  = useRouter()
+  const canonicalUrl = (`https://saumyanayak.xyz` + (router.asPath === "/" ? "": router.asPath)).split("?")[0];
     const container = {
       hidden: { opacity: 1, scale: 0 },
       visible: {
@@ -34,6 +37,7 @@ const Videos = ({youtubeData})=>{
                     <meta property="og:type" content="website" />
                     <meta property="og:image" content="https://user-images.githubusercontent.com/60464414/168478444-0b79ae2e-cd2e-4ca3-b062-f3b2d6ddb7a7.png"/>
                     <link rel="icon" href="/favicon.ico" />
+                    <link rel="canonical" href={canonicalUrl} />
              </Head>
             {data?.length && 
                 data.map((video)=>

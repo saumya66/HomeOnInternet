@@ -3,8 +3,11 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Typewriter from 'typewriter-effect';
 import {motion} from "framer-motion"
+import {useRouter} from "next/router"
 
 export default function Home() {
+  const router  = useRouter()
+  const canonicalUrl = (`https://saumyanayak.xyz` + (router.asPath === "/" ? "": router.asPath)).split("?")[0];
   const sentence = {
     hidden:{opacity:0},
     visible:{
@@ -14,6 +17,7 @@ export default function Home() {
       }
     }
   }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -25,6 +29,7 @@ export default function Home() {
           <meta property="og:type" content="website" />
           <meta property="og:image" content="https://user-images.githubusercontent.com/60464414/168478444-0b79ae2e-cd2e-4ca3-b062-f3b2d6ddb7a7.png"/>
           <link rel="icon" href="/favicon.ico" />
+          <link rel="canonical" href={canonicalUrl} />
       </Head>
       <div className={styles.home}>
         <div className={styles.header}>

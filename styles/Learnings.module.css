@@ -1,0 +1,33 @@
+.learnings{
+    width: 100%;
+    padding-left: 20%;
+    padding-right: 20%;
+    height: 90vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow: hidden;
+    color: var(--color-text-primary);
+    overflow-y:auto 
+}
+.learnings::-webkit-scrollbar {
+    display: none;
+  }
+.learnings {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;   
+}
+.learningsContainer{
+    width: 100%;
+}
+.learningPoint{
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+ 
+@media only screen and (max-width: 600px) {
+    .learnings{
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+}

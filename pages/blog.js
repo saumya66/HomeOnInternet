@@ -4,6 +4,8 @@ import Head from 'next/head'
 import BlogCard from "../components/BlogCard";
 import { motion } from "framer-motion";
 import { posts } from "../getAllPosts";
+import {useRouter} from "next/router"
+
 const Blogs = ({blogData})=>{
     const [data, setData] = useState([]);
     const container = {
@@ -17,7 +19,8 @@ const Blogs = ({blogData})=>{
         }
       }
     };
-  
+    const router  = useRouter()
+    const canonicalUrl = (`https://saumyanayak.xyz` + (router.asPath === "/" ? "": router.asPath)).split("?")[0];
     useEffect(() => {
 		setData(blogData?.items)
   	}, [blogData?.items]);
@@ -35,6 +38,7 @@ const Blogs = ({blogData})=>{
               <meta property="og:type" content="website" />
               <meta property="og:image" content="https://user-images.githubusercontent.com/60464414/168478444-0b79ae2e-cd2e-4ca3-b062-f3b2d6ddb7a7.png"/>
               <link rel="icon" href="/favicon.ico" />
+              <link rel="canonical" href={canonicalUrl} />
           </Head>
              {
                  posts?.length && 

@@ -56,6 +56,9 @@ import Head from "next/head";
                     </Link>
                     {/* <Image src={saumya} alt="" width="40"  height="40"/> */}
                     <div className={styles.navItems}>
+                        <Link href={"/learnings"}>
+                            <p  className={path==="learnings" ? styles.currItem : styles.navbarItem}>learnings</p>
+                        </Link>
                         <Link href={"/projects"}>
                             <p  className={path==="projects" ? styles.currItem :  styles.navbarItem}>projects</p>
                         </Link>
@@ -86,6 +89,9 @@ import Head from "next/head";
                     <div className={styles.sideNavItems}>
                         <Link href={"/"}>
                             <p className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>home</p>
+                        </Link>
+                        <Link href={"/learnings"}>
+                            <p className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>learnings</p>
                         </Link>
                         <Link href={"/projects"}>
                             <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>projects</p>

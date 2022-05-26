@@ -1,11 +1,10 @@
 import React from "react";
-import Card from "../components/Card";
-import styles from "../styles/Project.module.css"
-import {projects} from "../components/projects"
+import styles from "../styles/Learnings.module.css"
 import Head from 'next/head'
 import { motion } from "framer-motion";
+import { learnings } from "../components/learnings";
 import { useRouter } from "next/router";
-
+  
 const Projects = ()=>{
   const router  = useRouter()
   const canonicalUrl = (`https://saumyanayak.xyz` + (router.asPath === "/" ? "": router.asPath)).split("?")[0];
@@ -23,26 +22,27 @@ const Projects = ()=>{
     
       
     return(
-        <motion.div className={styles.project}   variants={container}
+        <motion.div className={styles.learnings}   variants={container}
         initial="hidden"
         animate="visible">
                <Head>
-                    <title>Projects - Saumya Ranjan Nayak</title>
-                    <meta name="description" content="Checkout out projects and products built by Saumya Ranjan Nayak!" />
+                    <title>Learnings - Saumya Ranjan Nayak</title>
+                    <meta name="description" content="Here are some things I have learned while living life." />
                     <meta property="og:title" content="Projects - Saumya Ranjan Nayak"/>
-                    <meta property="og:description" content="Checkout out projects and products built by Saumya Ranjan Nayak!" />
-                    <meta property="og:url" content="https://home-on-internet.vercel.app/projects" />
+                    <meta property="og:description" content="Here are some things I have learned while living life." />
+                    <meta property="og:url" content="https://home-on-internet.vercel.app/learnings" />
                     <meta property="og:type" content="website" />
                     <meta property="og:image" content="https://user-images.githubusercontent.com/60464414/168478444-0b79ae2e-cd2e-4ca3-b062-f3b2d6ddb7a7.png"/>
                     <link rel="icon" href="/favicon.ico" />
                     <link rel="canonical" href={canonicalUrl} />
                 </Head>
-            {
+                <div className={styles.learningsContainer}>
+                <h2>Hi there, this page contains and will be containing a distlled version of all the things I learn throughout life.</h2>                    
+                    {
+                        learnings.map((learning) => <li key={learning.id} className={styles.learningPoint}>{learning.learning}</li>)
+                    }
+                </div>
                 
-                projects.map((project,index) => 
-                    <Card type="project" key={index} thumbnailUrl={project.thumbnail} projectTitle={project.name} projectDesc={project.description} liveUrl={project.live} githubUrl={project.github}/>
-                )
-            }
         </motion.div>
     )
 }
