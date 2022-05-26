@@ -1,0 +1,178 @@
+import BlogPost from '../../../components/BlogPost'
+
+export const meta = {
+  title: 'How to be a Software Engineer from a Coder ?',
+  description: 'Integrating Blog to this site.',
+  date: 'May 15, 2022',
+  readTime: 2
+}
+
+export default ({ children }) => <BlogPost meta={meta}>{children}</BlogPost>;
+
+<br/>
+I started working at my first Software Engineering job when I was 19. I remember it was 2020, lockdown was going on. Unlike many I loved lockdown. Partly because it gave me more time to just be with my computer. Partly because I was irrationally obsessed about the COVID virus, most probably due to OCD.
+<br/>
+I would just go almost all night learning something new or making an app. Because I remember, just loving the feeling I got the next day, of accomplishing so much.
+<br/>
+PS: I binge-watched Silicon Valley so much that I made this : [Bitbuzz](https://github.com/saumya66/BitBuzz-SiliconValley).
+<br/>
+After being a bit confident in my skills, somewhere in 2020 I thought let's do an internship, cuz why not. Started applying and somehow I got hired on my first interview. 
+<br/>
+I remember, telling the lead engineer on my first job - "I know how to make small projects on my own, but I don't have experience writing code for bigger things or hardcore Software Engineering stuff. So I would love to learn that." 
+<br/>
+I had told this, thinking - "They had hired me & thus would expect some hardcore stuff from me but what if I would not be able to deliver?" As obviously, I was super nervous.
+<br/>
+![LdCY9Rf.gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1653244349619/x1MF5vfOe.gif align="center")
+
+But since then I have been fortunate enough to have interned at 3 places working in multiple roles. The first was a Web Full Stack, the second was on pure React Frontend stuff & third was on a mobile app with React Native. 
+<br/>
+Working alongside these super experienced engineers, I have learned a thing or two about Software Engineering. 
+<br/>
+Before we get started, if you are a video person I got you: <a href="https://www.youtube.com/watch?v=zIfxip2bI3E" target="_blank" ><font color="#0096FF" size="4" weight="bold">Video!</font></a> 
+ 
+<br/>
+**Awesome! so, here are some things that would probably ease your transition from just a guy building projects to a Software Engineer :**
+
+### 1. Write code for Humans
+
+   I think as we learn to code, we are taught these rules of programming. For example one being : 
+   "A variable name must start with a letter or an underscore character."
+<br/>
+  And just to abide by the rules & to avoid those red errors, as beginners we write 
+  code which is just meaningful enough to be understood by us, at that moment.
+<br/>
+  And maybe because of this we become strangers to a code we wrote a week ago.
+<br/>
+<p align="center">
+  <img src="https://preview.redd.it/plw31qu8qjyz.jpg?width=960&crop=smart&auto=webp&s=1f3b84b64bc93cbd0364109595fef12f55ba1e59" alt="drawing" width="400" />
+</p>
+But for a codebase that involves more that one person, we must write conscious code.
+
+  Meaning anyone who reads the code, understands it without the requirement of the person who wrote it. Writing this type of code is 
+  called writing for humans.
+
+> “Any fool can write code that a computer can understand. Good programmers write 
+>   code that humans can understand.”  ― Martin Fowler
+<br/>
+<p align="center">
+  <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1652780252177/1wl8j_JGp.png" width="400" />
+</p>
+ 
+
+  Just take a look at the below React codes. Both are functionally same, but see which 
+  one tells you more about what's happening 👇
+
+<p align="center">
+  <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1652964653324/_vpL7UswL.jpg" width="400" />
+</p>
+### 2. Testing Edge Cases before Shipping
+
+Earlier, while working on my own projects I didn't care about any good practices. It was just learning, building & shipping. So, I have learned to be aware of it after many nudges I got from senior engineers after submitting my PR or after testing. 
+<br/>
+Testing edge cases simply means testing the feature or app you just built for all the random things a user can do. And to check whether the app or feature responds ideally or not. If not, awesome you've just got to fix something, else you're ready to ship with confidence!
+<br/>
+To do this efficiently, you need to take off your programmer (I've built this) hat. And wear a user's hat who wants to break your app.
+<br/>
+Now, one might think - Isn't it the work of testers or quality assurance? Well, it might be later, but first, it's your responsibility as a builder to ship your best work. And that will make you a more conscious software engineer.
+<br/>
+Or you'll end up like her 👇😄   
+<br/>
+<p align="center">
+  <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1653240468844/3Ol1Q0VG2.jpg" width="400" />
+</p>
+### 3. Handle those Errors!
+
+Recently, the tech lead of our team said something to me that made so much sense. 
+He said & I quote - "Basically if you are working on the frontend you've to assume the backend guy is crazy & could send anything. So you've to handle those errors." And obviously the vice versa.
+<br/>
+What he meant to say is, think of how something could break the code & handle that with error handling stuff. By using things like - try, catch,finally & showing a popup or modal to the user that something just broke.
+<br/>
+More advanced things would be, using Error Boundaries. This means :
+- If some error happens in a screen 
+- The user sees a fallback screen or a screen saying - "Oops...looks like something broke. we are on it !" 
+- And other parts of the app work super fine.
+
+You might have seen this in mobile apps mainly. As the whole app crashing, due to a single bug will be devastating for the product. 
+
+**Basically write error-resistant code.
+**
+<br/>
+<p align="center">
+  <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1653241814780/lUlJCWkQw.jpg" width="400" />
+</p>
+### 4. Making good PRs 
+
+I have read this & also can say from experience - **"Keep your PR Small & Focused."**
+<br/>
+An example of small but not focused PR would be - Various small fixes but all around the app. It would put the reviewer very out of context & could also affect good testing.
+<br/>
+An example of a focused but not small PR would be - A very big feature with lots of code changes. It would make it hard for the reviewer to review the PR.
+<br/>
+So, a good PR would be small and focused.
+<br/>
+<p align="center">
+  <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1653241922078/K0EM0Gn1_.jpg" width="400" />
+</p>
+
+### 5. Refactoring & Resolving technical debt
+
+This is what Technical Debt means : 
+
+> When it comes to software development, technical debt is the idea that certain 
+>  necessary work gets delayed during the development of a software project in order to 
+>   hit a deliverable or deadline. Technical debt is the coding you must do tomorrow 
+>   because you took a shortcut in order to deliver the software today.
+<br/>
+Technical Debt might mean many things in different contexts. But in the context of writing code, it means writing quick code to get things working. And not caring about the good practices or future limitations that might produce. 
+<br/>
+It has its own advantage in that it is an optimization for short-term speed. But if the code is not fixed or refactored, it will be a mess after the codebase becomes large.
+ 
+#### An Example :
+Imagine before you started building your app, you decided purple would be a good primary theme or color. And every time you made a new component or element of the app you hardcoded `color : purple` at every place.
+<br/>
+After a month something changed your mind & you decided to go with red as the theme. Now you have to go through all those places & change 'purple' to 'red'. 
+<br/>
+Instead, if you had made a file named  `Constants` and stored `primaryColor : purple`, and imported it everywhere in your app. You would have to just change one word to test things!
+<br/>
+That is a simple example of refactoring that shows how powerful it is. 
+<br/>
+So, next time you notice a function or component is being used at various places or things are being repeated. It is a good practice to refactor it to a single place. From where it can be imported and used at various places.
+<br/>
+<p align="center">
+  <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1653241993459/R6iA57Buk.webp" width="400" />
+</p>
+ <br/>
+
+Another example would be choosing a language that will allow for faster building now but has some limitations in the future.
+
+**In long term, this will help in debugging, building new features, reviewing code, testing changes & basically everything.**
+
+### Bonus 🎉 -  Read Good Code & Start Reviewing other Engineers’ code
+
+Reading good code, written by experienced engineers & involving good practices will take your skills to a different level. Because next when you write code, you will start imitating the patterns & techniques you noticed.  
+
+> Exactly like all the great writers are great readers.
+
+To read some good code, you can search for great open-source projects on Github.
+<br/>
+If you work at a place, after some time you can start volunteering up to review others' PRs. Read the code, suggest some changes if required & also learn from them. 
+<br/>
+<p align="center">
+  <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1653242627552/w5IN2HK3-.png" width="400" />
+</p>
+<br/>
+It will make you a solid Engineer over time.
+
+## Conclusion 
+
+These were some things I have learned over the past 2 years. I hope you got to learn something out of it. 
+<br/>
+Do let me know your thoughts in the comments. That would be really valuable! 🙌
+<br/>
+I love writing and creating videos to share my learning. You can find me on <a href="https://twitter.com/saumya4real" target="_blank" ><font color="#0096FF" size="4" weight="bold">Twitter</font></a> & <a href="https://www.youtube.com/c/saumyanayak" target="_blank" ><font color="#0096FF" size="4" weight="bold">Youtube</font></a>  🧡
+<br/>
+Thanks for your time ! 🚀🚀
+
+
+
+
