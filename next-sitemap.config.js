@@ -1,7 +1,13 @@
-
+let policy ={
+  userAgent:"*"
+}
 module.exports = {
     siteUrl: process.env.SITE_URL || 'https://saumyanayak.xyz',
     generateRobotsTxt: true, // (optional)
-    // ...other options
+    robotsTxtOptions:{
+      policies :[
+        policy
+      ]
+    },
     outDir: './out',
   } 
