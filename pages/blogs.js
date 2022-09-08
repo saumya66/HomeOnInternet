@@ -19,12 +19,18 @@ const Blogs = ({blogData})=>{
         }
       }
     };
+    
+    function sortInternalPostsByDate(a,b){
+      return new Date(b?.module?.meta?.date).getTime() - new Date(a?.module?.meta?.date).getTime()
+    }
+    posts.sort(sortInternalPostsByDate)
     const router  = useRouter()
     const canonicalUrl = (`https://saumyanayak.xyz` + (router.asPath === "/" ? "": router.asPath)).split("?")[0];
     useEffect(() => {
 		setData(blogData?.items)
   	}, [blogData?.items]);
     
+
     return(
         <motion.div className={styles.blog} variants={container}
         initial="hidden"
@@ -40,6 +46,13 @@ const Blogs = ({blogData})=>{
               <link rel="icon" href="/favicon.ico" />
               <link rel="canonical" href={canonicalUrl} />
           </Head>
+          {console.log(posts[0].module.meta)
+           
+          }
+           
+          {
+            // console.log(posts)
+          }
              {
                  posts?.length && 
                  posts.map((post)=><BlogCard externalBlog={false} key={post.link} post={post}/>)
