@@ -1,0 +1,96 @@
+import BlogPost from '../../../components/BlogPost'
+
+export const meta = {
+  title: 'Understanding Ethereum White Paper - Part 1',
+  description: 'Welcome to the first post of a series of articles, that will go through the Ethereum Whitepaper.',
+  date: 'September 9, 2022',
+  readTime: 10,
+  thumbnailUrl: 'https://media.sketchfab.com/models/de0c154b6f1c46639864a01360dd6aa0/thumbnails/2e5b324d5f8542a5a0b32a50f57ed802/1976536bd0db486ba1df8e38af6a8f65.jpeg'
+}
+
+export default ({ children }) => <BlogPost meta={meta}>{children}</BlogPost>;
+ 
+<br/>
+<div style={{fontSize:20}}>
+Welcome to the first post of a series of articles, that will go through the Ethereum Whitepaper. Understanding a white paper is the best way to really know a technology. The goal of this series is to explain this beautiful white paper in a simple way. As it could be intimidating for a beginner to go through the white paper, this series could act as a good companion.
+<br/> 
+It is made by the compilation of notes I took while reading and understanding Ethereum. We will go through the topics in the order exactly as in the original whitepaper. 
+<br/>
+In this post, we will go through a brief history of Blockchain and an overview of the current state. So, lets get into it!
+
+<br/> 
+# **Introduction to Bitcoin and Existing Concepts**
+<br/> 
+In **1983 **David Chaum published a paper on the idea of anonymous electronic money. The idea was - An eCash software will be there on the user's local computer which would store money in a digital format, cryptographically signed by a bank. And the user could spend the digital money at any shop accepting eCash. 
+<br/> 
+*But the protocols largely failed to gain traction because of their reliance on a centralized intermediary.
+*
+<br/> 
+In **1998**, Wei Dai's [b-money](http://www.weidai.com/bmoney.txt) became the first proposal to introduce the idea of creating money through solving computational puzzles as well as decentralized consensus.
+<br/> 
+*But the proposal was scant on details as to how decentralized consensus could actually be implemented.
+*
+<br/> 
+Interesting Fact: The smallest subunit of [Ether](https://en.wikipedia.org/wiki/Ethereum), the *wei*, is named after him.
+<br/> 
+In **2005**, Hal Finney introduced the concept of "[reusable proofs of work](https://nakamotoinstitute.org/finney/rpow/)". It is a system that uses ideas from b-money together with Adam Back's computationally difficult - [Hashcash](https://en.wikipedia.org/wiki/Hashcash) puzzles to create a concept for a cryptocurrency. 
+<br/> 
+*But once again fell short of the ideal by relying on trusted computing as a backend.
+*
+<br/> 
+**Then in **2009** Satoshi Nakamoto implemented **Bitcoin**- the first decentralized currency. **
+<br/> 
+**It had two main parts:**
+- Managing ownership through [public key cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography). 
+ 
+- A consensus algorithm to keep track of who owns the coins, known as “**Proof Of Work**”.
+<br/> 
+**It was a breakthrough because it solved two important problems simultaneously:**
+<br/> 
+- It provided a simple consensus algorithm that allowed each node in the network to collectively agree on a set of canonical updates to the state of Bitcoin ledger.
+<div style={{marginLeft: 40}}>
+Or simply said, using the algorithm, a set of updates could be agreed upon by all the nodes or computers connected to the network. And as it happens, the Bitcoin ledger or the database could be updated with the new data. 
+</div>
+- It provided a mechanism i.e Proof Of Work for allowing free entry into the consensus process (which solved the question of who gets to influence the network ? solution - everyone!), while also simultaneously preventing sybil attacks.
+    <br/> 
+### Okay, but what are Sybil Attacks?
+
+Sybil Attack is a type of attack seen in peer-to-peer networks in which a node in the network operates multiple identities actively at the same time so as to compromise a disproportionate share of the system
+<br/> 
+Or simply said, the attacker pretends to be multiple people at the same time & tries to take over the decision-making process of the network.
+<br/>     
+The main aim of this attack is to gain the majority of influence in the network to carry out illegal actions in the system. 
+<br/> 
+The 51% attack is a type of Sybil attack. It happens when the attacker gets control of over half (thus 51% or more) of a network's total hash rate or computing power.
+<br/> 
+**According to the proposed mechanism i.e the Proof Of Work - The more computing power a node will have, the more influence it has on the consensus voting process.** 
+<br/> 
+Here's a scene from my favorite show explaining what a 51% attack is : 
+<br/> 
+<iframe width="560" height="315" src="https://www.youtube.com/embed?v=C8tPODfNfNM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br/> 
+<br/> 
+
+Great! so that's sybil attack briefly. And of course, in this series ahead, we will know in detail how these networks handle this problem.
+ 
+### A New Consensus Algorithm 
+
+Proof of work demands a lot of heavy computation, thus making the network slow and also super energy intensive. 
+<br/> 
+To solve these two main worries a new consensus mechanism is proposed that is called **Proof of Stake**. 
+<br/> 
+According to which - the node which holds the most network currency or has more skin in the game is of more power. 
+<br/> 
+And as of now, - Ethereum is going to have Proof of State replacing the original Proof of Work algorithm it had. They are calling it - The Merge. Cool right!
+
+## Conclusion
+ 
+That was a brief history of blockchain & also a bit on where it is right now. I hope this makes reading & understanding the whitepaper fun.
+<br/> 
+In the next post, we will get into the technicalities of Bitcoin as per the order of topics in the whitepaper. 
+<br/> 
+If you are wondering why Bitcoin?- that's because to understand Ethereum well, it helps to have understood Bitcoin. As the underlying tech is similar & also to realize Bitcoin's limitations and thus the need for Ethereum.
+<br/> 
+I would love & honestly need to know your thoughts on this article. As it would help me write better. Do drop a comment or message me on <u>[Twitter](https://twitter.com/saumyanayak_)</u>  or <u>[mail](mailto:futuredrivenme@gmail.com
+)</u> me!
+</div>

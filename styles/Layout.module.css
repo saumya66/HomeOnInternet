@@ -41,7 +41,7 @@
 
 .navItems{
   display: flex;
-  width : 45%; 
+  width : 60%; 
   justify-content: space-around;
 }
 
@@ -49,7 +49,7 @@
   display: inline-block;
 	cursor: pointer;
 	position: relative;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--color-text-primary);
   font-size: 1.5rem;
 }
@@ -74,6 +74,7 @@
 	position: relative;
 	border-bottom: 3px solid var(--color-text-primary);
 	cursor: pointer;
+
 }
 
 

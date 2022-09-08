@@ -42,11 +42,11 @@ const BlogCard = ({ thumbnailUrl, blogTitle, publishDate, mediumLink, externalBl
                         <p className={styles.blogDate}>{module?.meta.date}</p>
                     </div>
                 </div>
-                {/* <div className={styles.blogImageCont}>
+                <div className={styles.blogImageCont}>
                     <a href={link} alt="" target="_blank" rel="noreferrer">
-                        <Image src={thumbnailUrl} alt="" layout='fill' width={250} height={200} objectFit='cover' />
+                        <Image src={module?.meta.thumbnailUrl} alt="" layout='fill' width={250} height={200} objectFit='cover' />
                     </a>
-                </div> */}
+                </div>
             </motion.div>
 
         )
