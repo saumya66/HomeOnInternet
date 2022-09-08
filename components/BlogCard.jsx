@@ -32,7 +32,7 @@ const BlogCard = ({ thumbnailUrl, blogTitle, publishDate, mediumLink, externalBl
         return (
             <motion.div whileHover={{ scale: 1.1 }} className={styles.blogCard}>
                 <div className={styles.blogInfo}>
-                    <Link href={'/blog' + link}>
+                    <Link href={'/blogs' + link}>
                         <div className={styles.rowOne}>
                             <p className={styles.blogName}>{module?.meta.title}</p>
                             <p className={styles.blogDesc}>{module?.meta.description}</p>
