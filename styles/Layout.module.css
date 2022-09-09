@@ -41,7 +41,7 @@
 
 .navItems{
   display: flex;
-  width : 60%; 
+  width : 50%; 
   justify-content: space-around;
 }
 
