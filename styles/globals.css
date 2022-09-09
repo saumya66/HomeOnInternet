@@ -9,21 +9,26 @@ body {
 }
  
 @font-face {
-  font-family: "OpenSans";
+  font-family: "OpenSans-Regular";
   font-weight: 400;
   src: url("/fonts/OpenSans-Regular.ttf") format('truetype');
 }
 
 @font-face {
-  font-family: "OpenSans";
+  font-family: "OpenSans-Medium";
   font-weight: 500;
   src: url("/fonts/OpenSans-Medium.ttf") format('truetype');
 }
 
 @font-face {
-  font-family: "OpenSans";
+  font-family: "OpenSans-Bold";
   src: url("/fonts/OpenSans-Bold.ttf") format('truetype');
   font-weight: 700;
+}
+@font-face {
+  font-family: "OpenSans-Light";
+  src: url("/fonts/OpenSans-Light.ttf") format('truetype');
+  font-weight: 200;
 }
 a {
   color: inherit;
@@ -55,7 +60,8 @@ body{
   background-image: var(--background-image);
   background-repeat: no-repeat;
   background-size:     cover;
-  font-family: 'OpenSans';
+  font-family: 'OpenSans-Light';
+  font-size: 14px;
   background-position: center center; 
 }
 h1 {
@@ -69,7 +75,7 @@ p {
 }
 ::-webkit-scrollbar {
 	width: 12px;
-  }
+}
   
   /* Track */
   ::-webkit-scrollbar-track {
