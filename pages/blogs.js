@@ -46,13 +46,7 @@ const Blogs = ({blogData})=>{
               <link rel="icon" href="/favicon.ico" />
               <link rel="canonical" href={canonicalUrl} />
           </Head>
-          {console.log(posts[0].module.meta)
-           
-          }
-           
-          {
-            // console.log(posts)
-          }
+          
              {
                  posts?.length && 
                  posts.map((post)=><BlogCard externalBlog={false} key={post.link} post={post}/>)

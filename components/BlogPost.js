@@ -15,6 +15,7 @@ export default function BlogPost({ children, meta}) {
         <meta property="og:description" content={meta.description}/>
         <meta property="og:url" content={`https://home-on-internet.vercel.app${router.asPath}`} />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content={meta.thumbnailUrl}/>
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href={canonicalUrl} />
     </Head>
