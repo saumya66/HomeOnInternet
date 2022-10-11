@@ -1,8 +1,9 @@
 # *
 User-agent: *
+Allow: /
 
 # Host
-Host: https://saumyanayak.xyz
+Host: https://www.saumyanayak.xyz
 
 # Sitemaps
-Sitemap: https://saumyanayak.xyz/sitemap.xml
+Sitemap: https://www.saumyanayak.xyz/sitemap.xml
