@@ -7,14 +7,11 @@
 //     domains:['i.ytimg.com','cdn-images-1.medium.com','upload.wikimedia.org']
 //   }
 // }
-const withMDX = require("@next/mdx")({
-  extension: /\.mdx?$/
-});
-
-module.exports = withMDX({
+ 
+module.exports = ({
   reactStrictMode: true,
   module: {
-    rules: [{ test: /\.txt$/, use: 'raw-loader' }],
+    rules: [{ test: /\.(js|jsx)$/, use: 'raw-loader' }],
   },
   env: {
     API_KEY: process.env.API_KEY,
