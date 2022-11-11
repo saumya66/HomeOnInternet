@@ -7,24 +7,12 @@
 //     domains:['i.ytimg.com','cdn-images-1.medium.com','upload.wikimedia.org']
 //   }
 // }
- 
-module.exports = ({
-  reactStrictMode: true,
-  accordion: ["../src/**/*.accordion.@(j|t)sx"],
-  addons: [  "@chakra-ui/accordion"],
-  framework: "@accordion/react",
-  features: {
-    emotionAlias: false
-  },
-  webpackFinal: async (config) => {
-    config.module.rules.push({
-      test: /\.mjs$/,
-      include: /node_modules/,
-      type: "javascript/auto"
-    });
+const withMDX = require("@next/mdx")({
+  extension: /\.mdx?$/
+});
 
-    return config;
-  },
+module.exports = withMDX({
+  reactStrictMode: true,
   env: {
     API_KEY: process.env.API_KEY,
   },
