@@ -13,6 +13,9 @@ module.exports = ({
   module: {
     rules: [{ test: /\.(js|jsx)$/, use: 'raw-loader' }],
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   env: {
     API_KEY: process.env.API_KEY,
   },
