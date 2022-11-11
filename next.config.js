@@ -10,11 +10,20 @@
  
 module.exports = ({
   reactStrictMode: true,
-  module: {
-    rules: [{ test: /\.(js|jsx)$/, use: 'raw-loader' }],
+  accordion: ["../src/**/*.accordion.@(j|t)sx"],
+  addons: [  "@chakra-ui/accordion"],
+  framework: "@accordion/react",
+  features: {
+    emotionAlias: false
   },
-  resolve: {
-    extensions: ['.js', '.jsx']
+  webpackFinal: async (config) => {
+    config.module.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: "javascript/auto"
+    });
+
+    return config;
   },
   env: {
     API_KEY: process.env.API_KEY,
