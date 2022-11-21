@@ -1,0 +1,97 @@
+.work{
+    position: relative;
+    width: 100%;
+    padding-left: 20%;
+    padding-right: 20%;
+    height: 90vh;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    color: var(--color-text-primary);
+}
+.work {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;   
+}
+.work::-webkit-scrollbar {
+    display: none;
+}
+.cardsContainerScroll{
+    padding-top : 1rem;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    color: var(--color-text-primary);
+    overflow-y:auto 
+}
+.cardsContainerScroll::-webkit-scrollbar {
+    display: none;
+}
+.leftWorkCard{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 8%;
+    width: 300px;
+    height: 8rem;
+    padding: 0rem;
+    border-radius: 15px;
+    align-items: center;
+    box-shadow: 0px 0px 19px 0px rgba(50, 50, 50, 0.39);
+    background-color: var(--object-color);
+    margin-bottom:2.6rem;
+}
+.leftWorkCard:before{
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: -8px;
+    border:  solid;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent var(--object-color);
+}
+
+.rightWorkCard{
+    position: relative;
+    display: flex;
+    margin-left: 54%;
+    flex-direction: column;
+    width: 300px;
+    height: 8rem;
+    padding: 0rem;
+    border-radius: 15px;
+    align-items: center;
+    box-shadow: 0px 0px 19px 0px rgba(50, 50, 50, 0.39);
+    background-color: var(--object-color);
+    margin-bottom:2.6rem;
+}
+.rightWorkCard:before {
+    position: absolute;
+    content: " ";
+    height: 0;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: -8px;
+    border:  solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent var(--object-color) transparent transparent;
+}
+.line{
+    position: absolute;
+    z-index: 99999;
+    left: 50%;
+    background-color: var(--object-color);;
+    width : 8px;
+    height: 100%;
+    border-radius:10px;
+}
+@media only screen and (max-width: 600px) {
+    .work{
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+}
