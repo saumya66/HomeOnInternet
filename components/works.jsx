@@ -1,69 +1,38 @@
 export const projects = [
     {
-        name: "Sendecentralized",
-        description: "Built my first full-stack decentralized app.",
-        github: "https://github.com/saumya66/sendecentralized",
-        live: "https://sendecentralized.on.fleek.co",
-        thumbnail: "/sendecentralized.webp",
+        name: "anheuser-busch inbev",
+        role: "digital solutions intern",
+        contribution: "studied the journey of product from production to customer and proposed solutions with potential of saving $1.5 Million",
+        tech: "",
+        link: "https://www.abinbev-india.com",
+        // thumbnail: "/sendecentralized.webp",
     },
     {
-        name: "Remote Hub 📱",
-        description: "Find quality remote work, save jobs you love & of-course Apply!",
-        github: "https://github.com/saumya66/RemoteJobsApp",
-        live: "https://play.google.com/store/apps/details?id=com.futuredrivenapps.remotehub",
-        thumbnail: "/remotehub.webp",
+        name: "leap.club",
+        role: "sde intern (react native)",
+        contribution: "worked on multiple codebases, built various critical features and clean ui using react native, and the web version of the mobile app using nextjs.",
+        tech: "https://www.abinbev-india.com/",
+        link: "https://sendecentralized.on.fleek.co",
+        // thumbnail: "/sendecentralized.webp",
     },
     {
-        name: "HackrNews 📰",
-        description: "I know you love reading HackerNews so why not read it with ease ! 🚀",
-        github: "https://github.com/saumya66/hackr-news",
-        live: "http://hackrnews.vercel.app/",
-        thumbnail: "/hackrnews.webp",
+        name: "get breakout",
+        role: "react engineer intern",
+        contribution: "built core features like payments integration with stripe, super clean ui & integrated various apis from backend.",
+        tech: "https://www.abinbev-india.com/",
+        link: "https://twitter.com/get_breakout",
+        // thumbnail: "/sendecentralized.webp",
     },
     {
-        name: "HashnodeHome-Clone x HarperDB 🧡",
-        description: "A full React clone of Hashnode's Home feed getting feed data from HarperDB instance.",
-        github: "https://github.com/saumya66/Hashnode-HarperDB-Hackathon",
-        live: "https://hashnode-harper.herokuapp.com/",
-        thumbnail: "/hashnodeclone.webp",
+        name: "chabraine tech",
+        role: "full-stack sde intern",
+        contribution: "worked on a full stack webapp, building clean ui, integrating numerous apis, implementing auth with aws cognito & built a music player too.",
+        tech: "",
+        link: "",
+        // thumbnail: "/sendecentralized.webp",
     },
-    {
-        name: "Admin System 👩‍🎓",
-        description: "A full stack MERN Webapp for a Admin to manage courses of students.",
-        github: "https://github.com/saumya66/AdminSystem-MERN#readme",
-        live: "https://mainteny-admin.netlify.app/",
-        thumbnail: "/admin.webp",
-    },
-    {
-        name: "SongUp 🎧",
-        description: "A full stack MERN Webapp with JWT Auth, Song Uploads, Songs Feed.",
-        github: "https://github.com/saumya66/SongUp---Full-Stack#readme",
-        live: "https://songup.netlify.app/",
-        thumbnail: "/songup.webp",
-    },
-    {
-        name: "BitBuzz 💲",
-        description: "Buzzes everytime Bitcoin price drops in Realtime. - Inspired from Silicon Valley.",
-        github: "https://github.com/saumya66/BitBuzz-SiliconValley",
-        live: "https://bitbuzz.netlify.app/",
-        thumbnail: "/bitbuzz.webp",
-    },
-    {
-        name: "PeopleUAdmire 🙋‍♂️",
-        description: "To create one place - Made by people, For People to Find Awesome People.",
-        github: "https://github.com/saumya66/BitBuzz-SiliconValley",
-        live: "https://github.com/saumya66/PeopleUAdmire-Full-Stack#readme",
-        thumbnail: "/peopleuadmire.webp",
-    }
+
+
 ]
+//Resume : https://drive.google.com/file/d/1nCBQqcs9r4IEKPMV4jO_0TfLZ-gS3uz8/view?usp=sharing
 
-
-
-// Project Schema :
-// {
-//     name : "",
-//     description : "",
-//     github : "",
-//     live : "",
-//     thumbnail : "",
-// }

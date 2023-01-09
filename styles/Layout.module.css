@@ -137,7 +137,7 @@
   background-color: white;
   border-radius: 40px;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
     .siteContent{
       display: flex;
       flex-direction: column;
@@ -177,6 +177,20 @@
     .mobileSwitch[data-theme="dark"] {
       justify-content: flex-end;
     }
-    
-     
+}
+@media only screen and (max-width: 1300px) {
+  .navbar{
+    width: 60%;
+  }
+  .navItems{
+    width : 60%; 
+  }
+}
+@media only screen and (max-width: 1100px) {
+  .navbar{
+    width: 80%;
+  }
+  .navItems{
+    width : 60%; 
+  }
 }
