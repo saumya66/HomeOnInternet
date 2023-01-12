@@ -4,7 +4,8 @@ import styles from "../styles/Work.module.css"
 import Head from 'next/head'
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-import { projects } from "../components/works";
+import { works } from "../components/works";
+import WorkCard from "../components/WorkCard";
 
 const Work = ()=>{
   const router  = useRouter()
@@ -21,7 +22,13 @@ const Work = ()=>{
         }
       };
     
-      
+    const Avatar = () =>{
+      return{
+
+      }
+    }
+   
+
     return(
         <motion.div className={styles.work}   variants={container}
         initial="hidden"
@@ -39,10 +46,9 @@ const Work = ()=>{
                 </Head>
             <div className={styles.line}></div>
             <div className={styles.cardsContainerScroll}>
-
             {
-                projects.map((p,index)=>{
-                    return <div key={index} className={index%2 ? styles.rightWorkCard : styles.leftWorkCard}>{`${index}`}</div>
+                works.map((work,index)=>{
+                    return <WorkCard key={index} work={work} index={index} />
                 })
             }
             </div>

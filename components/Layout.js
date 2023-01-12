@@ -61,9 +61,9 @@ import { motion } from 'framer-motion'
                         <Link href={"/projects"}>
                             <p  className={path==="projects" ? styles.currItem :  styles.navbarItem}>projects</p>
                         </Link>
-                        {/* <Link href={"/work"}>
+                        <Link href={"/work"}>
                             <p  className={path==="work" ? styles.currItem : styles.navbarItem}>work</p>
-                        </Link> */}
+                        </Link>
                         <Link href={"/videos"}>
                             <p  className={path==="videos" ? styles.currItem : styles.navbarItem}>videos</p>
                         </Link>
@@ -96,9 +96,9 @@ import { motion } from 'framer-motion'
                         <Link href={"/projects"}>
                             <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>projects</p>
                         </Link>
-                        {/* <Link href={"/work"}>
+                        <Link href={"/work"}>
                             <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>work</p>
-                        </Link> */}
+                        </Link>
                         <Link href={"/videos"}>
                             <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>videos</p>
                         </Link>
