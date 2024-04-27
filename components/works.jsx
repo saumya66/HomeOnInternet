@@ -31,8 +31,6 @@ export const works = [
         link: "",
         thumbnail: "/company_logo.webp",
     },
-
-
 ]
 //Resume : https://drive.google.com/file/d/1nCBQqcs9r4IEKPMV4jO_0TfLZ-gS3uz8/view?usp=sharing
 

@@ -1,11 +1,8 @@
 import React from "react";
-import Card from "../components/Card";
-import styles from "../styles/Work.module.css"
 import Head from 'next/head'
-import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-import { works } from "../components/works";
-import WorkCard from "../components/WorkCard";
+import { WORK } from "../utils/constant";
+import Image from "next/image";
 
 const Work = ()=>{
   const router  = useRouter()
@@ -30,9 +27,7 @@ const Work = ()=>{
    
 
     return(
-        <motion.div className={styles.work}   variants={container}
-        initial="hidden"
-        animate="visible">
+        <div>
                <Head>
                     <title>Work - Saumya Nayak</title>
                     <meta name="description" content="Places Saumya has worked at." />
@@ -44,15 +39,36 @@ const Work = ()=>{
                     <link rel="icon" href="/favicon.ico" />
                     <link rel="canonical" href={canonicalUrl} />
                 </Head>
-            <div className={styles.line}></div>
-            <div className={styles.cardsContainerScroll}>
-            {
+                <div className="flex flex-col relative mt-8">
+                <div className="w-[1.5px] h-full absolute dark:bg-white bg-[#1C2029] top-0 left-[24px]"></div>
+                  {
+                    WORK.map((each) => <div key={each.id} className="flex flex-row mb-8">
+                      <div className="w-[70px] relative ">
+                        <Image src={each.thumbnail}  width={52} height={52} className="flex relative rounded-[26px]"/>
+                      </div>
+                      <div className="flex flex-col w-full ">
+                        <p className="font-medium text-lg">{each.name}</p>
+                        <p className="pt-1 text-lg">{each.role}</p>
+                        <p className="pt-1 text-sm">{each.period}</p>
+                        {
+                          each?.highlights ?
+                          <ul className="list-disc pl-4 text-base pt-2">
+                              {
+                                each?.highlights?.map((each, index) => <li key={index} className="pb-1">{each}</li>)
+                              }
+                          </ul>
+                          : <></>
+                        }
+                      </div>
+                    </div>)
+                  }
+                </div>
+            {/* {
                 works.map((work,index)=>{
                     return <WorkCard key={index} work={work} index={index} />
                 })
-            }
-            </div>
-        </motion.div>
+            } */}
+        </div>
     )
 }
 

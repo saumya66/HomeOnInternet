@@ -1,31 +1,16 @@
 import React from "react";
-import Card from "../components/Card";
-import styles from "../styles/Project.module.css"
-import {projects} from "../components/projects"
 import Head from 'next/head'
-import { motion } from "framer-motion";
 import { useRouter } from "next/router";
+import { PROJECTS} from "../utils/constant";
+import Image from "next/image";
+import { GithubIcon, ScanEyeIcon } from "lucide-react";
 
 const Projects = ()=>{
   const router  = useRouter()
   const canonicalUrl = (`https://saumyanayak.xyz` + (router.asPath === "/" ? "": router.asPath)).split("?")[0];
-    const container = {
-        hidden: { opacity: 1, scale: 0 },
-        visible: {
-          opacity: 1,
-          scale: 1,
-          transition: {
-            delayChildren: 0.3,
-            staggerChildren: 0.2
-          }
-        }
-      };
-    
-      
+  const pillStyle = "flex flex-row items-center rounded-2xl bg-[#4BDE8833] border-[#4BDE88] border-[1px] p-1 px-2 mr-2"
     return(
-        <motion.div className={styles.project}   variants={container}
-        initial="hidden"
-        animate="visible">
+        <div>
                <Head>
                     <title>Projects - Saumya Ranjan Nayak</title>
                     <meta name="description" content="Checkout out projects and products built by Saumya Ranjan Nayak!" />
@@ -37,13 +22,42 @@ const Projects = ()=>{
                     <link rel="icon" href="/favicon.ico" />
                     <link rel="canonical" href={canonicalUrl} />
                 </Head>
-            {
+                <div>
+                  {
+                    PROJECTS.map((each) => <div key={each.id} className="flex flex-col md:flex-row bg-white dark:bg-[#252B36] h-32 w-full mt-6 rounded-xl">
+                      <div className="flex relative w-full md:w-[20%] h-32 object-cover">
+                        <Image src={each.thumbnail} layout="fill" objectFit="cover" alt="" className="flex relative rounded-l-xl"/>
+                      </div>
+                      <div className="flex flex-col w-full md:w-[80%] justify-between rounded-r-xl p-4">
+                        <div className="flex flex-col">
+                        <p className="text-lg font-medium">{each.name}</p>
+                        <p className="pt-1">{each.description}</p>
+                        </div>
+                        <div className="flex flex-row">
+                          <a href={each.github} alt="" target="_blank" rel="noreferrer">
+                            <div className={pillStyle}>
+                              <GithubIcon className="h-4"/>
+                              <p className="text-xs">github</p>
+                            </div>
+                          </a>
+                          <a href={each.live} alt="" target="_blank" rel="noreferrer">
+                            <div className={pillStyle}>
+                              <ScanEyeIcon className="h-4"/>
+                              <p className="text-xs">see</p>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>)
+                  }
+                </div>
+            {/* {
                 
                 projects.map((project,index) => 
                     <Card type="project" key={index} thumbnailUrl={project.thumbnail} projectTitle={project.name} projectDesc={project.description} liveUrl={project.live} githubUrl={project.github}/>
                 )
-            }
-        </motion.div>
+            } */}
+        </div>
     )
 }
 

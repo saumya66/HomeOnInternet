@@ -1,8 +1,6 @@
 import React from "react";
 import Head from 'next/head'
 import { useRouter } from "next/router";
-import styles from "../styles/Reachme.module.css"
-import { motion } from "framer-motion";
 
 const Contact = ()=>{
     const router  = useRouter()
@@ -20,9 +18,7 @@ const Contact = ()=>{
       };
     
     return (
-       <motion.div className={styles.reach} variants={container}
-       initial="hidden"
-       animate="visible">
+       <div>
              <Head>
                     <title>Contact - Saumya Ranjan Nayak</title>
                     <meta name="description" content="Reach out and Know more about Saumya Ranjan Nayak" />
@@ -34,32 +30,30 @@ const Contact = ()=>{
                     <link rel="icon" href="/favicon.ico" />
                     <link rel="canonical" href={canonicalUrl} />
              </Head>
-             <div className={styles.reachContainer}>
+             <div>
                 <h3 >Hey there, thanks for visiting ! Here are some places I am on the internet. Feel free to reach out! </h3>
                 <ul>
                     <a href={"https://twitter.com/saumya4real"} alt="" target="_blank" rel="noreferrer">
-                        <li className={styles.reachPoint}>Twitter</li>
+                        <li>Twitter</li>
                     </a>
                     <a href={"https://github.com/saumya66"} alt="" target="_blank" rel="noreferrer">
-                        <li className={styles.reachPoint}>Github</li>
+                        <li>Github</li>
                     </a>
                     <a href={"https://www.youtube.com/c/SaumyaNayak"} alt="" target="_blank" rel="noreferrer">
-                        <li className={styles.reachPoint}>Youtube</li>
+                        <li>Youtube</li>
                     </a>
                     <a href={"https://www.linkedin.com/in/saumyanayak/"} alt="" target="_blank" rel="noreferrer">
-                        <li className={styles.reachPoint}>LinkedIn</li>
+                        <li>LinkedIn</li>
                     </a>
                     <a href={"https://saumya.hashnode.dev/"} alt="" target="_blank" rel="noreferrer">
-                        <li className={styles.reachPoint}>Hashnode</li>
+                        <li>Hashnode</li>
                     </a>
                     <a href={"https://medium.com/@saumyanayak"} alt="" target="_blank" rel="noreferrer">
-                        <li className={styles.reachPoint}>Medium</li>
+                        <li>Medium</li>
                     </a>
                 </ul>
              </div>
-            
-                 
-       </motion.div>
+       </div>
    )
 }
 

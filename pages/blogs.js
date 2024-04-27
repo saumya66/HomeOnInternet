@@ -1,24 +1,56 @@
 import React, { useEffect, useState } from "react";
-import styles from "../styles/Blog.module.css"
 import Head from 'next/head'
-import BlogCard from "../components/BlogCard";
-import { motion } from "framer-motion";
 import { posts } from "../getAllPosts";
 import {useRouter} from "next/router"
+import Image from "next/image";
+import Link from "next/link";
+
+
+const BlogCard = ({ thumbnailUrl, blogTitle, publishDate, mediumLink, externalBlog, post }) => {
+  let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const { link, module } = post
+      return (
+          // <div >
+          //     <div >
+          //         <a href={mediumLink} alt="" target="_blank" rel="noreferrer">
+          //             <div >
+          //                 <p >{blogTitle}</p>
+          //                 <p >{blogTitle}</p>
+          //             </div>
+          //         </a>
+          //         <div >
+          //             <p >{new Date(Date.parse(publishDate)).toLocaleDateString("en-US", options)}</p>
+          //         </div>
+          //     </div>
+          //     <div >
+          //         <a href={mediumLink} alt="" target="_blank" rel="noreferrer">
+          //             <Image src={thumbnailUrl} alt="" layout='fill' width={250} height={200} objectFit='cover' />
+          //         </a>
+          //     </div>
+          // </div>
+           <Link href={externalBlog ? mediumLink : '/blogs' + link}>
+           <div  className="flex flex-col md:flex-row bg-white dark:bg-[#252B36] h-32 w-full mt-6 rounded-xl">
+           <div className="flex relative w-full md:w-[20%] h-32 object-cover">
+             <Image src={externalBlog ? thumbnailUrl : module?.meta.thumbnailUrl} layout="fill" objectFit="cover" alt="" className="flex relative rounded-l-xl"/>
+           </div>
+           <div className="flex flex-col w-full md:w-[80%] justify-between rounded-r-xl p-4">
+                        <div className="flex flex-col">
+                        <p className="text-lg font-medium">{externalBlog ? blogTitle : module?.meta.title}</p>
+                          <p className="pt-1">{externalBlog ? blogTitle : module?.meta.description}</p>
+                        </div>
+                        <div className="flex flex-row">
+                         <p>{externalBlog ? new Date(Date.parse(publishDate)).toLocaleDateString("en-US", options) : module?.meta.date}</p>
+                        </div>
+                      </div>
+         </div>
+         </Link>
+      )
+ 
+}
+
 
 const Blogs = ({blogData})=>{
     const [data, setData] = useState([]);
-    const container = {
-      hidden: { opacity: 1, scale: 0 },
-      visible: {
-        opacity: 1,
-        scale: 1,
-        transition: {
-          delayChildren: 0.3,
-          staggerChildren: 0.2
-        }
-      }
-    };
     
     function sortInternalPostsByDate(a,b){
       return new Date(b?.module?.meta?.date).getTime() - new Date(a?.module?.meta?.date).getTime()
@@ -29,10 +61,10 @@ const Blogs = ({blogData})=>{
     useEffect(() => {
 		setData(blogData?.items)
   	}, [blogData?.items]);
-    
+    console.log("ddf", blogData)
 
     return(
-        <motion.div className={styles.blog} variants={container}
+        <div 
         initial="hidden"
         animate="visible">
           <Head>
@@ -46,7 +78,6 @@ const Blogs = ({blogData})=>{
               <link rel="icon" href="/favicon.ico" />
               <link rel="canonical" href={canonicalUrl} />
           </Head>
-          
              {
                  posts?.length && 
                  posts.map((post)=><BlogCard externalBlog={false} key={post.link} post={post}/>)
@@ -55,9 +86,8 @@ const Blogs = ({blogData})=>{
                  data?.length && 
                  data.map((blog,index)=><BlogCard externalBlog={true} key={index} thumbnailUrl={blog.thumbnail} blogTitle={blog.title} publishDate={blog.pubDate} mediumLink={blog.link} meta="" post=""/>)
              }
-        </motion.div>
+        </div>
     )
-    // <Card type="blog" key={index} thumbnailUrl={blog.thumbnail} blogTitle={blog.title} publishDate={blog.pubDate} link={blog.link} />
 }
 
 export async function getStaticProps(context) {

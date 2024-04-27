@@ -1,25 +1,14 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Typewriter from 'typewriter-effect';
-import {motion} from "framer-motion"
 import {useRouter} from "next/router"
 
 export default function Home() {
   const router  = useRouter()
   const canonicalUrl = (`https://saumyanayak.xyz` + (router.asPath === "/" ? "": router.asPath)).split("?")[0];
-  const sentence = {
-    hidden:{opacity:0},
-    visible:{
-      opacity:1,
-      transition:{
-        delay:0.5,
-      }
-    }
-  }
 
   return (
-    <div className={styles.container}>
+    <div >
       <Head>
           <title>Home - Saumya Ranjan Nayak</title>
           <meta name="description" content="Hello! This is Saumya Ranjan Nayak's home on the internet." />
@@ -31,25 +20,25 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
           <link rel="canonical" href={canonicalUrl} />
       </Head>
-      <div className={styles.home}>
-        <div className={styles.header}>
-          <h2 style={{ fontSize:"5rem", fontWeight:"400", marginBottom:0}}>Hello I&apos;m</ h2>
-          <div style={{display:"flex",flexDirection:"column"}}>
-            <motion.h1  initial="hidden" animate="visible"variants={sentence} style={{ textShadow: "-3px -1px 20px rgba(0,0,0,0.24)",  fontSize:"7rem", fontWeight:"600"}}>Saumya</motion.h1>
-            <div style={{fontSize:"2rem",textAlign:"center",marginTop:"3rem"}}>
-              <Typewriter
-                options={{
-                strings: ['Building Stuff','Engineer', 'Youtube Creator', 'Undergrad', ],
-                autoStart: true,
-                loop: true,
-                }}
-              />
-            </div>
-          </div>
-          <div style={{}}>
-
-          </div>
-        </div>
+      <div className='py-8'>
+        <p className='text-lg pb-8'>hi i'm saumya, working on making this site simple. </p>
+        <p className='text-lg underline pb-1'>focusing currently on</p>
+        <ul className='list-disc pl-4'>
+          <li>contributing to leap.club to make a beautiful community of women.</li>
+          <li>getting back to learning and building mode</li>
+          <li>making waking up early in the morning a habit</li>
+          <li>hitting gym 6 days a week</li>
+          <li>writing consistently</li>
+        </ul>
+        <p className='text-lg underline pt-4'>currently reading</p>
+        <ul className='list-disc pl-4'>
+          <li>what are you doing with your life? by jiddu krishnamurti</li>
+          <li>elon musk by walter isaacson</li>
+        </ul>
+        {/* <p className='text-lg underline pt-4'>currently writing</p> */}
+        
+      </div>
+      <div>
       </div>
       
     </div>
