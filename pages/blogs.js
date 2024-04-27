@@ -34,14 +34,14 @@ const BlogCard = ({ thumbnailUrl, blogTitle, publishDate, mediumLink, externalBl
              <Image src={externalBlog ? thumbnailUrl : module?.meta.thumbnailUrl} layout="fill" objectFit="cover" alt="" className="flex relative rounded-l-xl"/>
            </div>
            <div className="flex flex-col w-full md:w-[80%] justify-between rounded-r-xl p-4">
-                        <div className="flex flex-col">
-                        <p className="text-lg font-medium">{externalBlog ? blogTitle : module?.meta.title}</p>
-                          <p className="pt-1">{externalBlog ? blogTitle : module?.meta.description}</p>
-                        </div>
-                        <div className="flex flex-row">
-                         <p>{externalBlog ? new Date(Date.parse(publishDate)).toLocaleDateString("en-US", options) : module?.meta.date}</p>
-                        </div>
-                      </div>
+              <div className="flex flex-col">
+                <p className="text-lg font-medium">{externalBlog ? blogTitle : module?.meta.title}</p>
+                <p className="pt-1 text-sm">{externalBlog ? '' : module?.meta.description}</p>
+              </div>
+              <div className="flex flex-row">
+                <p className=" text-sm">{externalBlog ? new Date(Date.parse(publishDate)).toLocaleDateString("en-US", options) : module?.meta.date}</p>
+              </div>
+            </div>
          </div>
          </Link>
       )
