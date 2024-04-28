@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 const Switch = ({ onSwitch, isSwitchedOn }) => {
-    // useEffect(() => {
-    //     console.log("isSwitchedOn", isSwitchedOn)
-    // }, [isSwitchedOn])
-
     return (
         <>
             <label className='flex cursor-pointer select-none items-center'>
