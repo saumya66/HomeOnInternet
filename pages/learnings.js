@@ -1,8 +1,5 @@
 import React from "react";
-import styles from "../styles/Learnings.module.css"
 import Head from 'next/head'
-import { motion } from "framer-motion";
-import { learnings } from "../components/learnings";
 import { useRouter } from "next/router";
   
 const Projects = ()=>{
@@ -22,9 +19,7 @@ const Projects = ()=>{
     
       
     return(
-        <motion.div className={styles.learnings}   variants={container}
-        initial="hidden"
-        animate="visible">
+        <div >
                <Head>
                     <title>Learnings - Saumya Ranjan Nayak</title>
                     <meta name="description" content="Here are some things I have learned while living life." />
@@ -36,14 +31,14 @@ const Projects = ()=>{
                     <link rel="icon" href="/favicon.ico" />
                     <link rel="canonical" href={canonicalUrl} />
                 </Head>
-                <div >
+                {/* <div >
                 <h2>Hi there, this page contains and will be containing a distlled version of all the things I learn throughout life.</h2>                    
                     {
                         learnings.map((learning) => <li key={learning.id} className={styles.learningPoint}>{learning.learning}</li>)
                     }
-                </div>
+                </div> */}
                 
-        </motion.div>
+        </div>
     )
 }
 
