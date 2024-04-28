@@ -25,7 +25,7 @@ const Videos = ({youtubeData})=>{
 		  setData(youtubeData?.items)
 	  }, [youtubeData?.items]);
     return(
-        <div className="py-8 px-4 sm:px-12">
+        <div className="py-8 sm:px-12">
              <Head>
                     <title>Videos - Saumya Ranjan Nayak</title>
                     <meta name="description" content="Checkout youtube videos created by Saumya Ranjan Nayak!" />

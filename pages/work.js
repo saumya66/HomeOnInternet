@@ -47,14 +47,14 @@ const Work = ()=>{
                         <Image src={each.thumbnail}  width={52} height={52} className="flex relative rounded-[26px]"/>
                       </div>
                       <div className="flex flex-col w-full ">
-                        <p className="font-medium text-lg">{each.name}</p>
-                        <p className="pt-1 text-lg">{each.role}</p>
-                        <p className="pt-1 text-sm">{each.period}</p>
+                        <p className="font-medium text-base sm:text-lg">{each.name}</p>
+                        <p className="pt-1 text-base sm:text-lg">{each.role}</p>
+                        <p className="pt-1 text-xs sm:text-sm">{each.period}</p>
                         {
                           each?.highlights ?
-                          <ul className="list-disc pl-4 text-base pt-2">
+                          <ul className="list-disc pl-4 text-sm sm:text-base pt-2">
                               {
-                                each?.highlights?.map((each, index) => <li key={index} className="pb-1">{each}</li>)
+                                each?.highlights?.map((each, index) => <li key={index} className="pb-2">{each}</li>)
                               }
                           </ul>
                           : <></>

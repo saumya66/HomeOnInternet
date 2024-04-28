@@ -11,17 +11,17 @@ const BlogCard = ({ thumbnailUrl, blogTitle, publishDate, mediumLink, externalBl
   const { link, module } = post
       return (
            <Link target="_blank" rel="noreferrer"  href={externalBlog ? mediumLink : '/blogs' + link}>
-           <div  className="flex flex-col md:flex-row bg-white dark:bg-[#252B36] h-32 w-full mt-6 rounded-xl">
+           <div  className="flex flex-col md:flex-row bg-white dark:bg-[#252B36] w-full mt-6 rounded-xl">
            <div className="flex relative w-full md:w-[20%] h-32 object-cover">
-             <Image src={externalBlog ? thumbnailUrl : module?.meta.thumbnailUrl} layout="fill" objectFit="cover" alt="" className="flex relative rounded-l-xl"/>
+             <Image src={externalBlog ? thumbnailUrl : module?.meta.thumbnailUrl} layout="fill" objectFit="cover" alt="" className="flex relative max-sm:rounded-t-xl sm:rounded-l-xl"/>
            </div>
            <div className="flex flex-col w-full md:w-[80%] justify-between rounded-r-xl p-4">
               <div className="flex flex-col">
-                <p className="text-lg font-medium">{externalBlog ? blogTitle : module?.meta.title}</p>
-                <p className="pt-1 text-sm">{externalBlog ? '' : module?.meta.description}</p>
+                <p className="text-base sm:text-lg font-medium">{externalBlog ? blogTitle : module?.meta.title}</p>
+                <p className="pt-1 text-xs sm:text-sm">{externalBlog ? '' : module?.meta.description}</p>
               </div>
               <div className="flex flex-row">
-                <p className=" text-sm">{externalBlog ? new Date(Date.parse(publishDate)).toLocaleDateString("en-US", options) : module?.meta.date}</p>
+                <p className="text-xs sm:text-sm pt-4">{externalBlog ? new Date(Date.parse(publishDate)).toLocaleDateString("en-US", options) : module?.meta.date}</p>
               </div>
             </div>
          </div>

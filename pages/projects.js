@@ -24,16 +24,16 @@ const Projects = ()=>{
                 </Head>
                 <div>
                   {
-                    PROJECTS.map((each) => <div key={each.id} className="flex flex-col md:flex-row bg-white dark:bg-[#252B36] h-32 w-full mt-6 rounded-xl">
-                      <div className="flex relative w-full md:w-[20%] h-32 object-cover">
-                        <Image src={each.thumbnail} layout="fill" objectFit="cover" alt="" className="flex relative rounded-l-xl"/>
+                    PROJECTS.map((each) => <div key={each.id} className="flex flex-col sm:flex-row bg-white dark:bg-[#252B36] h-auto w-full mt-6 rounded-xl">
+                     <div className="flex relative w-full sm:w-[20%] h-32 object-cover">
+                        <Image src={each.thumbnail} layout="fill" objectFit="cover" alt="" className="flex relative max-sm:rounded-t-xl sm:rounded-l-xl"/>
                       </div>
-                      <div className="flex flex-col w-full md:w-[80%] justify-between rounded-r-xl p-4">
+                      <div className="flex flex-col w-full sm:w-[80%] justify-between rounded-r-xl p-2 py-4 sm:p-4">
                         <div className="flex flex-col">
-                        <p className="text-lg font-medium">{each.name}</p>
-                        <p className="pt-1">{each.description}</p>
+                        <p className="text-base sm:text-lg font-medium">{each.name}</p>
+                        <p className="pt-1 text-xs sm:text-sm">{each.description}</p>
                         </div>
-                        <div className="flex flex-row">
+                        <div className="flex flex-row pt-4">
                           <a href={each.github} alt="" target="_blank" rel="noreferrer">
                             <div className={pillStyle}>
                               <GithubIcon className="h-4"/>
