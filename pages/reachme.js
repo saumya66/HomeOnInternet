@@ -25,7 +25,7 @@ const Contact = ()=>{
                 <h3 className="text-center text-lg ">hey there, thanks for landing here somehow! here are some places I am on the internet. </h3>
                 <p className="text-center text-lg py-2"re>feel free to reach out! </p>
                 <div className="flex flex-row flex-wrap pt-4 justify-center">
-                    <a href={"https://twitter.com/saumya4real"} alt="" target="_blank" rel="noreferrer">
+                    <a href={"https://twitter.com/saumyanayak_"} alt="" target="_blank" rel="noreferrer">
                     <div className={pillStyle}>
                             <TwitterIcon className="h-4"/>
                             <p className="text-xs">twitter</p>
