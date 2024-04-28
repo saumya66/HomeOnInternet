@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Head from 'next/head'
 import { useRouter } from "next/router";
+import Image from "next/image";
+import Link from "next/link";
 
 const Videos = ({youtubeData})=>{
   const [data, setData] = useState([]);
@@ -19,10 +21,11 @@ const Videos = ({youtubeData})=>{
     };
   
     useEffect(() => {
-		setData(youtubeData?.items)
-	}, [youtubeData?.items]);
+      console.log("DD", youtubeData?.items)
+		  setData(youtubeData?.items)
+	  }, [youtubeData?.items]);
     return(
-        <div>
+        <div className="py-8 px-4 sm:px-12">
              <Head>
                     <title>Videos - Saumya Ranjan Nayak</title>
                     <meta name="description" content="Checkout youtube videos created by Saumya Ranjan Nayak!" />
@@ -34,9 +37,26 @@ const Videos = ({youtubeData})=>{
                     <link rel="icon" href="/favicon.ico" />
                     <link rel="canonical" href={canonicalUrl} />
              </Head>
-            {/* {data?.length && 
-                data.map((video)=><></>)
-            } */}
+            {
+            data?.length ?
+          
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12">
+                {data.map((video, index)=> <div key={index} className="flex flex-col rounded-lg dark:bg-[#252B36] ">
+                  <Link target="_blank" rel="noreferrer" href={`https://www.youtube.com/watch?v=${video?.id?.videoId}`}>
+                      <div className="relative h-[200px] ">
+                        <Image src={video?.snippet?.thumbnails?.high?.url} alt="" layout='fill' objectFit='cover' className="rounded-t-lg" />
+                      </div>
+                      <div className="flex flex-col p-4">
+                        <p className="pb-2">{video?.snippet?.title}</p>
+                        <p className="text-sm">{video.snippet?.description}</p>
+                      </div>
+                  </Link>
+                 </div>
+                 )}
+                </div>
+              
+              : <></>
+            }
         </div>
     )
 }

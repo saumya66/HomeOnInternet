@@ -22,19 +22,19 @@ export default function Home() {
       </Head>
       <div className='py-8'>
         <p className='text-lg pb-8'>hi i'm saumya, working on making this site simple. </p>
-        <p className='text-lg underline pb-1'>focusing currently on</p>
-        <ul className='list-disc pl-4'>
+          {/*  <p className='text-lg underline pb-1'>focusing currently on</p>
+         <ul className='list-disc pl-4'>
           <li>contributing to leap.club to make a beautiful community of women.</li>
           <li>getting back to learning and building mode</li>
           <li>making waking up early in the morning a habit</li>
           <li>hitting gym 6 days a week</li>
           <li>writing consistently</li>
-        </ul>
+         </ul>
         <p className='text-lg underline pt-4'>currently reading</p>
         <ul className='list-disc pl-4'>
           <li>what are you doing with your life? by jiddu krishnamurti</li>
           <li>elon musk by walter isaacson</li>
-        </ul>
+        </ul> */}
         {/* <p className='text-lg underline pt-4'>currently writing</p> */}
         
       </div>

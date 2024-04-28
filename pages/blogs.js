@@ -10,25 +10,7 @@ const BlogCard = ({ thumbnailUrl, blogTitle, publishDate, mediumLink, externalBl
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const { link, module } = post
       return (
-          // <div >
-          //     <div >
-          //         <a href={mediumLink} alt="" target="_blank" rel="noreferrer">
-          //             <div >
-          //                 <p >{blogTitle}</p>
-          //                 <p >{blogTitle}</p>
-          //             </div>
-          //         </a>
-          //         <div >
-          //             <p >{new Date(Date.parse(publishDate)).toLocaleDateString("en-US", options)}</p>
-          //         </div>
-          //     </div>
-          //     <div >
-          //         <a href={mediumLink} alt="" target="_blank" rel="noreferrer">
-          //             <Image src={thumbnailUrl} alt="" layout='fill' width={250} height={200} objectFit='cover' />
-          //         </a>
-          //     </div>
-          // </div>
-           <Link href={externalBlog ? mediumLink : '/blogs' + link}>
+           <Link target="_blank" rel="noreferrer"  href={externalBlog ? mediumLink : '/blogs' + link}>
            <div  className="flex flex-col md:flex-row bg-white dark:bg-[#252B36] h-32 w-full mt-6 rounded-xl">
            <div className="flex relative w-full md:w-[20%] h-32 object-cover">
              <Image src={externalBlog ? thumbnailUrl : module?.meta.thumbnailUrl} layout="fill" objectFit="cover" alt="" className="flex relative rounded-l-xl"/>
@@ -61,7 +43,6 @@ const Blogs = ({blogData})=>{
     useEffect(() => {
 		setData(blogData?.items)
   	}, [blogData?.items]);
-    console.log("ddf", blogData)
 
     return(
         <div 
