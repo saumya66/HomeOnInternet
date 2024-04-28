@@ -19,10 +19,10 @@ export default function BlogPost({ children, meta}) {
         <link rel="canonical" href={canonicalUrl} />
     </Head>
         <div className={"py-4"}>
-            <p className={"text-3xl text-center font-medium pt-12"}>{meta.title}</p>
+            <p className={"text-xl sm:text-3xl text-center font-medium pt-12"}>{meta.title}</p>
             <p className={"text-base text-center py-4"}>{meta.date}</p>
 
-            <article className={"text-xs leading-7 px-2 md:px-12"}>{children}</article>
+            <article className={"text-xs sm:text-lg px-2 md:px-12"}>{children}</article>
         </div>
     </>
   )

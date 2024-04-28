@@ -10,7 +10,7 @@ const BlogCard = ({ thumbnailUrl, blogTitle, publishDate, mediumLink, externalBl
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const { link, module } = post
       return (
-           <Link target="_blank" rel="noreferrer"  href={externalBlog ? mediumLink : '/blogs' + link}>
+           <Link target={externalBlog ? "_blank"  : "_self"} rel="noreferrer"  href={externalBlog ? mediumLink : '/blogs' + link}>
            <div  className="flex flex-col md:flex-row bg-white dark:bg-[#252B36] w-full mt-6 rounded-xl">
            <div className="flex relative w-full md:w-[20%] h-32 object-cover">
              <Image src={externalBlog ? thumbnailUrl : module?.meta.thumbnailUrl} layout="fill" objectFit="cover" alt="" className="flex relative max-sm:rounded-t-xl sm:rounded-l-xl"/>
