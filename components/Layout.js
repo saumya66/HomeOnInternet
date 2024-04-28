@@ -48,7 +48,7 @@ import { makeThemeDark, makeThemeLight } from '../utils/helpers';
            <section className='flex flex-col w-[1000px] bg-yellow p-4'>
                 <div className='w-full flex-row justify-between flex' >
                     <Link href={"/"}>
-                        <p className='text-xl'>hello</p>
+                        <p onClick={(e)=>setShowSideBar(false)} className='text-xl'>hello</p>
                     </Link> 
                     <div className=' sm:flex hidden flex-row '>
                         {
@@ -91,6 +91,7 @@ import { makeThemeDark, makeThemeLight } from '../utils/helpers';
                                 <p className='text-xl mb-2' onClick={(e)=>setShowSideBar(false)}>{each.name}</p>
                             </Link>)
                         }
+                        <Switch onSwitch={onSwitch}  isSwitchedOn={activeTheme === "dark"} />
                     </div>
 
                 }   
