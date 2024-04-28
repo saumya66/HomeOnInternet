@@ -19,7 +19,7 @@ export default function Home() {
           <link rel="canonical" href={canonicalUrl} />
       </Head>
       <div className='py-8'>
-        <p className='text-lg pb-8'>hi i'm saumya, working on making this site simple. </p>
+        <p className='text-lg pb-8'>{"hi i'm saumya, working on making this site simple. "}</p>
           {/*  <p className='text-lg underline pb-1'>focusing currently on</p>
          <ul className='list-disc pl-4'>
           <li>contributing to leap.club to make a beautiful community of women.</li>
