@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import styles from "../styles/Blog.module.css"
 import { useRouter } from 'next/router'
 
 export default function BlogPost({ children, meta}) {
@@ -19,15 +18,12 @@ export default function BlogPost({ children, meta}) {
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href={canonicalUrl} />
     </Head>
-    <div className={styles.blog}>
-        <div className={styles.blogContainer}>
-            <p className={styles.blogTitle}>{meta.title}</p>
-            <p className={styles.articleDate}>- Saumya Ranjan Nayak</p>
-            <p className={styles.articleDate}>{meta.date}</p>
+        <div className={"py-4"}>
+            <p className={"text-xl sm:text-3xl text-center font-medium pt-12"}>{meta.title}</p>
+            <p className={"text-base text-center py-4"}>{meta.date}</p>
 
-            <article className={styles.article}>{children}</article>
+            <article className={"text-xs sm:text-lg px-2 md:px-12"}>{children}</article>
         </div>
-    </div>
     </>
   )
 }

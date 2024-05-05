@@ -1,122 +1,102 @@
 import React, { useState ,useEffect} from 'react'
 import Link from 'next/link'
-import styles from "../styles/Layout.module.css"
-import Button from './Button'
-import {faBars,faTimes} from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from "next/router";
-import { motion } from 'framer-motion'
+import Switch from './Switch';
+import { NavItems } from '../utils/constant';
+import { AlignRightIcon, Minimize2Icon } from 'lucide-react';
+import { makeThemeDark, makeThemeLight } from '../utils/helpers';
 
  const Layout = ({children, pageTitle, description })=>{
     const router = useRouter();
      const [showSideBar, setShowSideBar] = useState(false);
-     const [activeTheme, setActiveTheme] = useState((typeof window !== "undefined"  && localStorage.getItem("theme")!==null) ?localStorage.getItem("theme") : "dark");
+     const [activeTheme, setActiveTheme] = useState("loading");
      const path = router.asPath.replace("/", "");
-     const spring = {
-        type: "spring",
-        stiffness: 700,
-        damping: 30
-      };
+    
+      const onSwitch = async () => {
+        try {
+            const updatedThemePreference = activeTheme === "light" ? "dark" : "light";
+            if(updatedThemePreference === "dark") makeThemeDark()
+            else makeThemeLight();
+            setActiveTheme(updatedThemePreference)
+        } catch (error) {
+            console.log(error)
+        }
+      }
+
+      const toggleSidebar = () => {
+        try {
+             setShowSideBar(!showSideBar)
+        } catch (error) {
+            console.log(error)
+        }
+      }
       
-     useEffect(() => {
-         document.body.dataset.theme=activeTheme;
-         localStorage.setItem("theme",activeTheme)
-         console.log("1")
-     }, [activeTheme])
-     const variants = {
-        hidden: { opacity: 0, x: -200, y: 0 },
-        enter: { opacity: 1, x: 0, y: 0 },
-        exit: { opacity: 0, x: 0, y: -100 },
-    }
     useEffect(()=>{
-        console.log("2")
         if (typeof window !== "undefined") {
-            if(localStorage.getItem("theme")===null)
-                localStorage.setItem("theme","dark");
-            
+                if (localStorage.getItem("theme") === "dark" || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { //if user has pre selected dark mode on site or has never selected any theme on site and has dark mode on system then i show dark mode but don't store it her localstorage as she has not selected it.
+                    document.documentElement.classList.add('dark')
+                    setActiveTheme("dark")
+                  } else {
+                    document.documentElement.classList.remove('dark')
+                    setActiveTheme("light")
+                  }
         }
     },[])
-    
+
     return(
-        <>
-  
-        <div className={styles.siteLayout}>
-           <div className={styles.siteContent}>  
-                <div className={styles.navbar}>
-                    {/* <Image src={} alt="" width=""  height=""/> */}
-                    <div className={styles.sideDrawerIcon} onClick={(e)=>setShowSideBar(!showSideBar)}>
-                        {!showSideBar ? 
-                            <FontAwesomeIcon icon={faBars} height="28" color="white"/> 
-                            : <FontAwesomeIcon icon={faTimes} height="28" color="white"/>
+        <div className='flex w-full justify-center dark:text-white text-black '>
+           <section className='flex flex-col w-[1000px] bg-yellow p-4'>
+                <div className='w-full flex-row justify-between flex' >
+                    <Link href={"/"}>
+                        <p onClick={(e)=>setShowSideBar(false)} className='text-xl'>hello</p>
+                    </Link> 
+                    <div className=' sm:flex hidden flex-row '>
+                        {
+                            NavItems.map((each) =>  <Link key={each.id} href={each.link}>
+                                <div  className='flex flex-col items-center px-4 text-lg cursor-pointer '>
+                                    <p className='font-poppins'>{each.name}</p>
+                                    {
+                                        path === each.name ? 
+                                        <div className='flex w-2 h-2 rounded-md dark:bg-white bg-[#1C2029]'></div>
+                                        : <></>
+                                    }
+                                </div>
+                        </Link>)
                         }
                     </div>
-                    <Link href={"/"}>
-                        <p className={styles.homeNavItem} >Saumya</p>
-                    </Link>
-                    {/* <Image src={saumya} alt="" width="40"  height="40"/> */}
-                    <div className={styles.navItems}>
-                        {/* <Link href={"/learnings"}>
-                            <p  className={path==="learnings" ? styles.currItem : styles.navbarItem}>learnings</p>
-                        </Link> */}
-                        <Link href={"/projects"}>
-                            <p  className={path==="projects" ? styles.currItem :  styles.navbarItem}>projects</p>
-                        </Link>
-                        <Link href={"/work"}>
-                            <p  className={path==="work" ? styles.currItem : styles.navbarItem}>work</p>
-                        </Link>
-                        <Link href={"/videos"}>
-                            <p  className={path==="videos" ? styles.currItem : styles.navbarItem}>videos</p>
-                        </Link>
-                        <Link href={"/blogs"}>
-                            <p  className={path==="blogs" ? styles.currItem : styles.navbarItem}>blogs</p>
-                        </Link>
-                        <Link href={"/reachme"}>
-                            <p  className={path==="reachme" ? styles.currItem : styles.navbarItem}>reachme</p>
-                        </Link>
+                    <div className=' sm:flex hidden flex-row'>
+                    {
+                        activeTheme === "loading" ? <></>
+                        : 
+                        <Switch onSwitch={onSwitch}  isSwitchedOn={activeTheme === "dark"} />
+                    }
                     </div>
-                    <div className={styles.switch} data-theme={activeTheme} onClick={()=>setActiveTheme(activeTheme==="light"?"dark":"light")}>
-                        <motion.div className={styles.handle} whileHover={{ scale: 1.2 }} layout transition={spring} />
+
+                    <div className='sm:hidden flex' onClick={toggleSidebar}>
+                            {!showSideBar ? 
+                                <AlignRightIcon />
+                                : <Minimize2Icon />
+                        }
                     </div>
-                     {/* <Button name={"Download"} handleClick={()=>setActiveTheme(activeTheme==="light"?"dark":"light")} /> */}
                 </div>
                 
                 {!showSideBar ? 
-                        <div className={styles.dataContainer}>
-                    {children}
+                    <div>
+                        {children}
                     </div> 
                     : 
-                
-                    <div className={styles.sideNavItems}>
-                        <Link href={"/"}>
-                            <p className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>home</p>
-                        </Link>
-                        {/* <Link href={"/learnings"}>
-                            <p className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>learnings</p>
-                        </Link> */}
-                        <Link href={"/projects"}>
-                            <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>projects</p>
-                        </Link>
-                        <Link href={"/work"}>
-                            <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>work</p>
-                        </Link>
-                        <Link href={"/videos"}>
-                            <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>videos</p>
-                        </Link>
-                        <Link href={"/blogs"}>
-                            <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>blogs</p>
-                        </Link>
-                        <Link href={"/reachme"}>
-                            <p  className={styles.sideNavbarItem} onClick={(e)=>setShowSideBar(false)}>reachme</p>
-                        </Link>
-                        <div className={styles.mobileSwitch} data-theme={activeTheme} onClick={()=>setActiveTheme(activeTheme==="light"?"dark":"light")}>
-                            <motion.div className={styles.handle} whileHover={{ scale: 1.2 }} layout transition={spring} />
-                        </div>
+                    <div className='sm:hidden flex flex-col py-4'>
+                        {
+                            NavItems.map((each) => <Link key={each.id} href={each.link}>
+                                <p className='text-xl mb-2' onClick={(e)=>setShowSideBar(false)}>{each.name}</p>
+                            </Link>)
+                        }
+                        <Switch onSwitch={onSwitch}  isSwitchedOn={activeTheme === "dark"} />
                     </div>
 
                 }   
-            </div>
+            </section>
         </div>
-    </>
     )
 }
 

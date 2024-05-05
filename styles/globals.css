@@ -1,36 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
   margin: 0;
   height: 100%;
 	width: 100%;
-  max-width: 1540px;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
 }
  
-@font-face {
-  font-family: "OpenSans-Regular";
-  font-weight: 400;
-  src: url("/fonts/OpenSans-Regular.ttf") format('truetype');
+/*Define CSS variables based on tailwind's dark/light mode and use in global css*/
+@layer base {
+  :root {
+    --bg-color-primary: #F5F5FB;
+  }
+  :root[class~="dark"] {
+    --bg-color-primary: #1C2029;
+  
+  }
 }
 
-@font-face {
-  font-family: "OpenSans-Medium";
-  font-weight: 500;
-  src: url("/fonts/OpenSans-Medium.ttf") format('truetype');
-}
-
-@font-face {
-  font-family: "OpenSans-Bold";
-  src: url("/fonts/OpenSans-Bold.ttf") format('truetype');
-  font-weight: 700;
-}
-@font-face {
-  font-family: "OpenSans-Light";
-  src: url("/fonts/OpenSans-Light.ttf") format('truetype');
-  font-weight: 200;
-}
 a {
   color: inherit;
   text-decoration: none;
@@ -40,30 +32,10 @@ a {
   box-sizing: border-box;
 }
 
-body[data-theme="light"]{
-  --background-image :  url(../public/lightBackg.jpg);
-  --color-text-primary : black;
-  --background-gradient :   linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
-  --theme-color :  white ;
-  --object-color : #ffffff;
-  /*  linear-gradient(132deg, rgba(255,255,255,1) 29%, rgba(251,200,212,1) 83%); */
-}
-
-body[data-theme="dark"]{
-  --color-text-primary : white;
-  --background-image :  url(../public/backg3.jpg);
-  --background-gradient : linear-gradient(315deg, #000000 0%, #414141 74%);;
-  --object-color : #262837;
-  --theme-color : black
-}
 body{
+  background-color: var(--bg-color-primary);
   transition: background 0.25s ease-in-out;
-  background-image: var(--background-image);
-  background-repeat: no-repeat;
-  background-size:     cover;
-  font-family: 'OpenSans-Light';
-  font-size: 14px;
-  background-position: center center; 
+  text-transform: lowercase;
 }
 h1 {
 	padding: 0;
@@ -74,36 +46,3 @@ p {
 	padding: 0;
 	margin: 0;
 }
-::-webkit-scrollbar {
-	width: 12px;
-}
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-	box-shadow: inset 0 0 5px grey; 
-	border-radius: 10px;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-	background: #8c5ff5; 
-	border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-	background: #6725ff; 
-  }
-  #nprogress .bar {
-    background: #6725ff !important;
-    height:5px!important; 
-  }
-  
-  #nprogress .peg {
-    /* box-shadow: 0 0 10px white, 0 0 5px white; */
-  }
-  
-  #nprogress .spinner-icon {
-    border-top-color: #6725ff!important;
-    border-left-color: #6725ff!important;
-  }
