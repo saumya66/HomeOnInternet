@@ -21,7 +21,9 @@ export default function Home() {
       </Head>
       <div className='pt-12 sm:py-16 sm:w-9/12'>
         <p className='text-base sm:text-lg pb-6'>{"hi there. welcome to my little corner on the internet."}</p>
-        <p className='text-base sm:text-lg pb-6'>{"quick intro. spawned on earth in the year 2000. discovered programming in 2020. fell in love with learning to make or making to learn. started working in 2021. been working at startups & on multiple side-projects building cool things. i build across the stack but have heavily worked on the frontend - building & shipping mobile and web apps."}</p>
+        <p className='text-base sm:text-lg pb-6'>{"quick intro. spawned on earth in the year 2000. discovered programming in 2020. fell in love with learning to make & making to learn things. "}</p>
+        <p className='text-base sm:text-lg pb-2'>{"started working in 2021. been working at startups & on multiple side-projects building cool things. i build across the stack but have heavily worked on the frontend - building & shipping mobile and web apps."}</p>
+
         <p className='text-base sm:text-lg pb-6'>{"apart from this i enjoy reading good books, drawing - particularly pencil sketches, listening to good music, often singing too and definitely a good workout."}</p>
         <p className='text-base sm:text-lg pb-6 font-medium'>goal is to seek truth and work on useful things that reduce suffering.</p>
         <p className='text-base pb-2'>⚒️ currently building: <span className='underline'><Link href={"https://x.com/saumyanayak_/status/1786658748976488931"}>an image optimizer</Link></span> </p>
