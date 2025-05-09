@@ -44,7 +44,7 @@ const Work = ()=>{
                   {
                     WORK.map((each) => <div key={each.id} className="flex flex-row mb-8">
                       <div className="w-[70px] relative ">
-                        <Image src={each.thumbnail}  width={52} height={52} className="flex relative rounded-[26px]"/>
+                        <Image alt={"saumya-nayak-work-logo"} src={each.thumbnail}  width={52} height={52} className="flex relative rounded-[26px]"/>
                       </div>
                       <div className="flex flex-col w-full ">
                         <p className="font-medium text-base sm:text-lg">{each.name}</p>

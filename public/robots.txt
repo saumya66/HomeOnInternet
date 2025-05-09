@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.saumyanayak.xyz
+Host: https://www.saumyaone.xyz
 
 # Sitemaps
-Sitemap: https://www.saumyanayak.xyz/sitemap.xml
+Sitemap: https://www.saumyaone.xyz/sitemap.xml

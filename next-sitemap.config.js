@@ -3,12 +3,12 @@ let policy ={
   allow: "/",
 }
 module.exports = {
-    siteUrl: process.env.SITE_URL || 'https://www.saumyanayak.xyz',
+    siteUrl: 'https://www.saumyaone.xyz',
     generateRobotsTxt: true, // (optional)
     robotsTxtOptions:{
       policies :[
         policy
       ]
     },
-    outDir: './out',
+    outDir: './public',
   } 
