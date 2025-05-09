@@ -13,6 +13,7 @@
   "dependencies": {
     "@mdx-js/loader": "^2.1.1",
     "@next/mdx": "^12.1.6",
+    "home-on-internet": "file:",
     "http-server": "^14.1.0",
     "lucide-react": "^0.372.0",
     "next": "13",
