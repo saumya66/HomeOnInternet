@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 
-const BlogCard = ({ thumbnailUrl, blogTitle, publishDate, mediumLink, externalBlog, post }) => {
+const BlogCard = ({ thumbnailUrl = '', blogTitle, publishDate, mediumLink, externalBlog, post }) => {
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const { link, module } = post
       return (
