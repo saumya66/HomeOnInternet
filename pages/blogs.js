@@ -8,28 +8,45 @@ import Link from "next/link";
 
 const BlogCard = ({ thumbnailUrl = '', blogTitle, publishDate, mediumLink, externalBlog, post }) => {
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const { link, module } = post
-      return (
-           <Link target={externalBlog ? "_blank"  : "_self"} rel="noreferrer"  href={externalBlog ? mediumLink : '/blogs' + link}>
-           <div  className="flex flex-col md:flex-row bg-white dark:bg-[#252B36] w-full mt-6 rounded-xl">
-           <div className="flex relative w-full md:w-[20%] h-32 object-cover">
-             <Image src={externalBlog ? thumbnailUrl : module?.meta.thumbnailUrl} layout="fill" objectFit="cover" alt="" className="flex relative max-sm:rounded-t-xl sm:rounded-l-xl"/>
-           </div>
-           <div className="flex flex-col w-full md:w-[80%] justify-between rounded-r-xl p-4">
-              <div className="flex flex-col">
-                <p className="text-base sm:text-lg font-medium">{externalBlog ? blogTitle : module?.meta.title}</p>
-                <p className="pt-1 text-xs sm:text-sm">{externalBlog ? '' : module?.meta.description}</p>
-              </div>
-              <div className="flex flex-row">
-                <p className="text-xs sm:text-sm pt-4">{externalBlog ? new Date(Date.parse(publishDate)).toLocaleDateString("en-US", options) : module?.meta.date}</p>
-              </div>
-            </div>
-         </div>
-         </Link>
-      )
- 
-}
+  const { link, module } = post || {};
+  // Provide fallback values for meta properties
+  const meta = module?.meta || {};
+  const thumbnail = externalBlog ? thumbnailUrl : meta.thumbnailUrl || '/default-thumbnail.jpg';
+  const title = externalBlog ? blogTitle : meta.title || 'Title Not Found';
+  const description = externalBlog ? '' : meta.description || 'Description Not Found';
+  const date = externalBlog ? publishDate : meta.date || 'Date Not Found';
 
+  return (
+    <Link
+      target={externalBlog ? '_blank' : '_self'}
+      rel="noreferrer"
+      href={externalBlog ? mediumLink : '/blogs' + (link || '')}
+    >
+      <div className="flex flex-col md:flex-row bg-white dark:bg-[#252B36] w-full mt-6 rounded-xl">
+        <div className="flex relative w-full md:w-[20%] h-32 object-cover">
+          <Image
+            src={thumbnail}
+            layout="fill"
+            objectFit="cover"
+            alt={title}
+            className="flex relative max-sm:rounded-t-xl sm:rounded-l-xl"
+          />
+        </div>
+        <div className="flex flex-col w-full md:w-[80%] justify-between rounded-r-xl p-4">
+          <div className="flex flex-col">
+            <p className="text-base sm:text-lg font-medium">{title}</p>
+            <p className="pt-1 text-xs sm:text-sm">{description}</p>
+          </div>
+          <div className="flex flex-row">
+            <p className="text-xs sm:text-sm pt-4">
+              {externalBlog ? new Date(Date.parse(date)).toLocaleDateString('en-US', options) : date}
+            </p>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+};
 
 const Blogs = ({blogData})=>{
     const [data, setData] = useState([]);
@@ -65,7 +82,7 @@ const Blogs = ({blogData})=>{
              }
              {
                  data?.length && 
-                 data.map((blog,index)=><BlogCard externalBlog={true} key={index} thumbnailUrl={blog.thumbnail} blogTitle={blog.title} publishDate={blog.pubDate} mediumLink={blog.link} meta="" post=""/>)
+                 data.map((blog,index)=><BlogCard externalBlog={true} key={index} thumbnailUrl={blog?.thumbnail ? blog.thumbnail : '/default-blog-thumbnail.gif'} blogTitle={blog.title} publishDate={blog.pubDate} mediumLink={blog.link} meta="" post=""/>)
              }
         </div>
     )
