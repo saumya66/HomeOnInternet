@@ -1,0 +1,133 @@
+---
+description: Architecture overview of the HomeOnInternet personal site
+alwaysApply: true
+---
+
+# HomeOnInternet — Architecture Overview
+
+Personal site for Saumya Nayak built with **Next.js 13 Pages Router**, MDX blogs, Tailwind CSS, and a few external API integrations. No CMS layer — all content lives in code or MDX files.
+
+---
+
+## Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 13 (Pages Router — no App Router) |
+| Styling | Tailwind CSS 3 (`darkMode: 'selector'`) |
+| Content (blog) | MDX via `@next/mdx` + `@mdx-js/loader` |
+| Icons | `lucide-react` |
+| Font | Google Fonts — Poppins (via `next/font/google`) |
+| Route progress | `nprogress` |
+| Sitemaps | `next-sitemap` |
+| Deployment | Vercel |
+
+---
+
+## Directory Structure
+
+```
+/
+├── pages/                  # All routes (Pages Router)
+│   ├── _app.js             # App shell — wraps every page in <Layout>
+│   ├── _document.js        # Custom HTML document
+│   ├── index.js            # / — Home / intro
+│   ├── projects.js         # /projects
+│   ├── work.js             # /work
+│   ├── videos.js           # /videos
+│   ├── blogs.js            # /blogs — index (MDX posts + Medium RSS)
+│   ├── reachme.js          # /reachme
+│   ├── learnings.js        # /learnings (placeholder, not in nav)
+│   └── blogs/
+│       └── <slug>/
+│           └── index.mdx   # Individual blog post pages
+├── components/
+│   ├── Layout.js           # Header, nav, dark-mode toggle — wraps all pages
+│   ├── BlogPost.js         # MDX post wrapper (SEO head + title/date)
+│   └── Switch.jsx          # Light/dark theme toggle button
+├── utils/
+│   ├── constant.js         # Static data: NavItems, PROJECTS, WORK
+│   └── helpers.js          # Theme helpers (read/write dark class on <html>)
+├── styles/
+│   └── globals.css         # Tailwind layers + CSS vars for bg colors
+├── getAllPosts.js           # require.context glob — discovers MDX posts at build time
+├── next.config.js          # withMDX, pageExtensions, images.domains, env
+├── tailwind.config.js      # content paths, darkMode: 'selector'
+├── next-sitemap.config.js  # siteUrl: 'https://www.saumyaone.xyz'
+└── public/                 # Static assets, generated sitemap.xml, robots.txt
+```
+
+---
+
+## Pages & Sections
+
+| Route | File | Data source |
+|-------|------|------------|
+| `/` | `pages/index.js` | Static (inline) |
+| `/projects` | `pages/projects.js` | `PROJECTS` array in `utils/constant.js` |
+| `/work` | `pages/work.js` | `WORK` array in `utils/constant.js` |
+| `/videos` | `pages/videos.js` | YouTube Data API v3 (`getStaticProps`) |
+| `/blogs` | `pages/blogs.js` | `getAllPosts.js` (MDX) + Medium RSS via rss2json (`getStaticProps`) |
+| `/blogs/<slug>` | `pages/blogs/<slug>/index.mdx` | MDX file (each exports `meta`) |
+| `/reachme` | `pages/reachme.js` | Static social links |
+| `/learnings` | `pages/learnings.js` | Placeholder — no nav link |
+
+---
+
+## Data Flow
+
+### Static site data
+`utils/constant.js` exports `NavItems`, `PROJECTS`, and `WORK` — plain JS arrays imported directly into page files.
+
+### Blog posts (MDX)
+- Each post lives at `pages/blogs/<slug>/index.mdx`.
+- Wraps its content in `<BlogPost meta={...}>` from `components/BlogPost.js`.
+- `getAllPosts.js` uses `require.context` to glob all `.mdx` files under `pages/blogs/` at build time and returns `{ slug, meta }` pairs for the `/blogs` listing page.
+
+### External data (build-time)
+Both fetches happen in `getStaticProps`, so the API calls run at **build time** only (static HTML generated):
+- **YouTube** — `https://www.googleapis.com/youtube/v3/search` with `process.env.API_KEY`.
+- **Medium** — `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@saumyanayak`.
+
+> ⚠️ `API_KEY` is exposed to the client bundle via `next.config.js` `env:{}`. Consider moving YouTube fetch to a server-only API route or using `NEXT_PUBLIC_` naming intentionally.
+
+---
+
+## Styling
+
+- **Tailwind utilities** throughout; no CSS Modules.
+- **Dark mode** is toggled manually by adding/removing the `dark` class on `<html>` (`helpers.js` + `Switch.jsx`). Tailwind's `darkMode: 'selector'` picks this up.
+- **CSS variables** `--bg-color-primary` set in `globals.css` for body background in each theme.
+- **Global rule:** `text-transform: lowercase` applied to `body` in `globals.css`.
+
+---
+
+## Components
+
+### `Layout.js`
+Shell around every page. Renders the header text "hello", desktop nav tabs (from `NavItems`), a hamburger/mobile nav, and the `<Switch>` theme toggle. Active nav item is derived from `useRouter().pathname`.
+
+### `BlogPost.js`
+Wrapper used by every `.mdx` post. Injects a `<Head>` with Open Graph / canonical SEO tags built from the `meta` prop, renders the post title and date, then `{children}` (the MDX body).
+
+### `Switch.jsx`
+Single-purpose toggle button that calls `helpers.js` to flip the `dark` class and persist preference.
+
+---
+
+## SEO
+
+- `next/head` in each page file provides per-page `<title>`, `<meta description>`, Open Graph tags, and `<link rel="canonical">`.
+- Canonical base URL in page components: `https://saumyanayak.xyz`.
+- `next-sitemap` generates `sitemap.xml` and `robots.txt` into `public/` at build time; configured with `siteUrl: 'https://www.saumyaone.xyz'`.
+
+> ⚠️ Domain inconsistency: pages reference `saumyanayak.xyz`, `home-on-internet.vercel.app`, and `saumyaone.xyz` across different files. Consolidate to one canonical domain.
+
+---
+
+## Known Issues
+
+- `pages/reachme.js` has a malformed JSX fragment (`"re"` after `className`).
+- `pages/learnings.js` default export is named `Projects` (copy-paste artifact).
+- Multiple `WORK` entries share `id: 4`, causing duplicate React keys.
+- YouTube `API_KEY` is client-bundle-exposed via `next.config.js` `env:{}`.

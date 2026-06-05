@@ -1,31 +1,16 @@
 import '../styles/globals.css'
-import Layout from "../components/Layout"
-import Router from 'next/router';
-import NProgress from 'nprogress'; //nprogress module
-import 'nprogress/nprogress.css'; //styles of nprogress
-import {Poppins} from "next/font/google"
+import '../styles/site.css'
+import SiteLayout from '../components/SiteLayout'
 
-const poppins = Poppins({
-  //👇 Add variable to our object
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-poppins',
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
-})
+export default function MyApp({ Component, pageProps }) {
+  /* Blog post pages rendered by their own MDX wrapper — skip SiteLayout */
+  if (Component.noLayout) {
+    return <Component {...pageProps} />
+  }
 
-//Binding events. 
-Router.events.on('routeChangeStart', () => NProgress.start()); Router.events.on('routeChangeComplete', () => NProgress.done()); Router.events.on('routeChangeError', () => NProgress.done());
-function MyApp({ Component, pageProps }) {
-  return <>
-       <style jsx global>{`
-        html {
-          font-family: ${poppins.style.fontFamily};
-        }
-      `}</style>
-        <Layout>
-              <Component {...pageProps} />
-        </Layout>
-  </>
+  return (
+    <SiteLayout>
+      <Component {...pageProps} />
+    </SiteLayout>
+  )
 }
-
-export default MyApp

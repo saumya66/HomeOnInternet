@@ -1,0 +1,20 @@
+import BlogPost from '../../components/BlogPost'
+
+export const meta = {
+  title: 'Post Title Here',
+  date: '2026-06-05',
+  description: 'One sentence about what this post covers.',
+  tags: ['engineering'],
+  readTime: 5,
+  image: '',
+}
+
+export default ({ children }) => <BlogPost meta={meta}>{children}</BlogPost>
+
+Write your post here using plain markdown.
+
+Start with a strong opening line that makes the reader want to keep going.
+
+## A Heading
+
+Content here.
