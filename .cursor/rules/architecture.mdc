@@ -150,5 +150,5 @@ export const meta = {
 - **No CSS Modules** — all styling is in `styles/site.css` (custom properties, plain class selectors)
 - **CSS variables** for all design tokens: `--ink`, `--paper`, `--gut`, `--base`, `--header-h`, `--amber`, `--ease`, etc.
 - **Dark mode** not implemented in the current version
-- **Responsive breakpoints**: 1080px (2-col cards), 900px (dial sizing), 820px (timeline), 560px (single-col), 425px (mobile hero centering + dial corner)
+- **Responsive breakpoints**: 1080px (2-col cards), 900px (dial sizing), 820px (timeline), 560px (single-col), **425px (mobile — hero/post header centering, dial corner position)**
 - **`body { overflow: hidden }`** — scrolling is per-section inside `.mode` containers, except on blog post pages where `body.post { overflow: auto }` restores normal scroll
