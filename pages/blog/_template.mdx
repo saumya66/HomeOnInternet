@@ -1,20 +1,32 @@
 import BlogPost from '../../components/BlogPost'
 
 export const meta = {
-  title: 'Post Title Here',
-  date: '2026-06-05',
-  description: 'One sentence about what this post covers.',
-  tags: ['engineering'],
-  readTime: 5,
-  image: '',
+  title: 'Your Post Title',
+  date: '2026-06-07',           // YYYY-MM-DD
+  description: 'One sentence that makes someone want to read this.',
+  tags: ['engineering'],         // pick from: engineering, life, building-in-public, notes
+  readTime: 5,                   // estimated minutes
+  image: '',                     // optional: full URL to a cover image
 }
 
 export default ({ children }) => <BlogPost meta={meta}>{children}</BlogPost>
 
-Write your post here using plain markdown.
+Opening line. Make it direct. One or two sentences that set up what this post is about.
 
-Start with a strong opening line that makes the reader want to keep going.
+## First heading
 
-## A Heading
+Write freely. No need to be formal — this is your corner of the internet.
 
-Content here.
+Use **bold** for emphasis, *italic* for tone.
+
+- Lists work great for breakdowns
+- Keep items short
+- One idea per bullet
+
+## Second heading
+
+Another section. End with something that invites the reader to think or act.
+
+---
+
+*Optional closing note — a question, a reflection, or just a sign-off.*

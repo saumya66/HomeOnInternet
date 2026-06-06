@@ -1,11 +1,6 @@
----
-description: Architecture overview of the HomeOnInternet personal site
-alwaysApply: true
----
-
 # HomeOnInternet — Architecture Overview
 
-Personal site for Saumya Nayak built with **Next.js 13 Pages Router**, MDX blogs, Tailwind CSS, and a few external API integrations. No CMS layer — all content lives in code or MDX files.
+Personal site for Saumya Nayak built with **Next.js 13 Pages Router**, MDX blogs, custom CSS, and a mode-dial SPA-style navigation shell.
 
 ---
 
@@ -14,10 +9,9 @@ Personal site for Saumya Nayak built with **Next.js 13 Pages Router**, MDX blogs
 | Layer | Technology |
 |-------|-----------|
 | Framework | Next.js 13 (Pages Router — no App Router) |
-| Styling | Tailwind CSS 3 (`darkMode: 'selector'`) |
+| Styling | Custom CSS (`styles/site.css`) + Tailwind CSS 3 (`styles/globals.css`) |
 | Content (blog) | MDX via `@next/mdx` + `@mdx-js/loader` |
-| Icons | `lucide-react` |
-| Font | Google Fonts — Poppins (via `next/font/google`) |
+| Font | Google Fonts — Poppins + Hanken Grotesk (variable) |
 | Route progress | `nprogress` |
 | Sitemaps | `next-sitemap` |
 | Deployment | Vercel |
@@ -28,106 +22,133 @@ Personal site for Saumya Nayak built with **Next.js 13 Pages Router**, MDX blogs
 
 ```
 /
-├── pages/                  # All routes (Pages Router)
-│   ├── _app.js             # App shell — wraps every page in <Layout>
+├── pages/
+│   ├── _app.js             # App shell — wraps pages in SiteLayout; bypasses it for /blog/* routes
 │   ├── _document.js        # Custom HTML document
-│   ├── index.js            # / — Home / intro
-│   ├── projects.js         # /projects
+│   ├── index.js            # / — Home (passes latestPost from getStaticProps)
 │   ├── work.js             # /work
-│   ├── videos.js           # /videos
-│   ├── blogs.js            # /blogs — index (MDX posts + Medium RSS)
-│   ├── reachme.js          # /reachme
-│   ├── learnings.js        # /learnings (placeholder, not in nav)
-│   └── blogs/
+│   ├── studio.js           # /studio
+│   ├── timeline.js         # /timeline
+│   ├── blog.js             # /blog — post listing (getAllPosts via getStaticProps)
+│   └── blog/
+│       ├── _template.mdx   # Boilerplate for new posts
 │       └── <slug>/
-│           └── index.mdx   # Individual blog post pages
+│           └── index.mdx   # Individual blog post — wrapped in <BlogPost meta={...}>
 ├── components/
-│   ├── Layout.js           # Header, nav, dark-mode toggle — wraps all pages
-│   ├── BlogPost.js         # MDX post wrapper (SEO head + title/date)
-│   └── Switch.jsx          # Light/dark theme toggle button
-├── utils/
-│   ├── constant.js         # Static data: NavItems, PROJECTS, WORK
-│   └── helpers.js          # Theme helpers (read/write dark class on <html>)
+│   ├── SiteLayout.js       # Global shell: topbar, Dial, stage, CaseStudy overlay, VideoModal
+│   ├── SiteHeader.js       # Shared header (topbar + topbar-inner) — used by SiteLayout & BlogPost
+│   ├── Dial.js             # Mode-dial UI component (declarative, driven by useDial hook)
+│   ├── CaseStudy.js        # Slide-in case study overlay, opened via SiteContext.openCase(key)
+│   ├── VideoModal.js       # Portal-based YouTube iframe modal, opened via SiteContext.openVideo(id)
+│   ├── BlogPost.js         # MDX post wrapper: SEO head, shared header, article layout, scroll fix
+│   └── sections/
+│       ├── HomeSection.js  # / content: hero, now-cards, reach-row, footer
+│       ├── WorkSection.js  # /work content
+│       ├── StudioSection.js # /studio content
+│       ├── TimelineSection.js # /timeline content
+│       └── BlogSection.js  # /blog content (post list)
+├── hooks/
+│   ├── useDial.js          # All dial state: rotation, drag, keyboard, scroll-link, View Transition nav
+│   └── useReveal.js        # IntersectionObserver scroll-reveal for [data-reveal] elements
+├── data/
+│   └── siteData.js         # MODES, ORDER, ROUTE_TO_MODE, MODE_TO_ROUTE, ICONS, CASE_DATA, TIMELINE_ITEMS
 ├── styles/
-│   └── globals.css         # Tailwind layers + CSS vars for bg colors
-├── getAllPosts.js           # require.context glob — discovers MDX posts at build time
-├── next.config.js          # withMDX, pageExtensions, images.domains, env
-├── tailwind.config.js      # content paths, darkMode: 'selector'
+│   ├── site.css            # All custom styles: layout, dial, cards, modals, blog, responsive
+│   └── globals.css         # Tailwind base + CSS vars for bg colors
+├── getAllPosts.js           # Node.js fs — scans pages/blog/*/index.mdx, parses meta, returns sorted array
+├── next.config.js          # withMDX, pageExtensions: ['js', 'jsx', 'mdx']
 ├── next-sitemap.config.js  # siteUrl: 'https://www.saumyaone.xyz'
-└── public/                 # Static assets, generated sitemap.xml, robots.txt
+└── public/                 # Static assets, sitemap.xml, robots.txt
 ```
 
 ---
 
-## Pages & Sections
+## Routing & Pages
 
-| Route | File | Data source |
-|-------|------|------------|
-| `/` | `pages/index.js` | Static (inline) |
-| `/projects` | `pages/projects.js` | `PROJECTS` array in `utils/constant.js` |
-| `/work` | `pages/work.js` | `WORK` array in `utils/constant.js` |
-| `/videos` | `pages/videos.js` | YouTube Data API v3 (`getStaticProps`) |
-| `/blogs` | `pages/blogs.js` | `getAllPosts.js` (MDX) + Medium RSS via rss2json (`getStaticProps`) |
-| `/blogs/<slug>` | `pages/blogs/<slug>/index.mdx` | MDX file (each exports `meta`) |
-| `/reachme` | `pages/reachme.js` | Static social links |
-| `/learnings` | `pages/learnings.js` | Placeholder — no nav link |
+| Route | File | Notes |
+|-------|------|-------|
+| `/` | `pages/index.js` | `getStaticProps` passes `latestPost` (posts[0]) to HomeSection |
+| `/work` | `pages/work.js` | Static |
+| `/studio` | `pages/studio.js` | Static |
+| `/timeline` | `pages/timeline.js` | Static |
+| `/blog` | `pages/blog.js` | `getStaticProps` calls `getAllPosts()` |
+| `/blog/<slug>` | `pages/blog/<slug>/index.mdx` | Bypasses SiteLayout — BlogPost has its own layout |
 
 ---
 
-## Data Flow
+## Navigation & Dial
 
-### Static site data
-`utils/constant.js` exports `NavItems`, `PROJECTS`, and `WORK` — plain JS arrays imported directly into page files.
+The site uses a **mode-dial** as its primary navigation. The dial is a circular draggable element rendered in `SiteLayout` — always on screen, fixed-positioned.
 
-### Blog posts (MDX)
-- Each post lives at `pages/blogs/<slug>/index.mdx`.
-- Wraps its content in `<BlogPost meta={...}>` from `components/BlogPost.js`.
-- `getAllPosts.js` uses `require.context` to glob all `.mdx` files under `pages/blogs/` at build time and returns `{ slug, meta }` pairs for the `/blogs` listing page.
-
-### External data (build-time)
-Both fetches happen in `getStaticProps`, so the API calls run at **build time** only (static HTML generated):
-- **YouTube** — `https://www.googleapis.com/youtube/v3/search` with `process.env.API_KEY`.
-- **Medium** — `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@saumyanayak`.
-
-> ⚠️ `API_KEY` is exposed to the client bundle via `next.config.js` `env:{}`. Consider moving YouTube fetch to a server-only API route or using `NEXT_PUBLIC_` naming intentionally.
+- **Modes**: `home`, `studio`, `work`, `blog`, `timeline` (defined in `data/siteData.js`)
+- **Routing**: `useDial` maps mode IDs ↔ routes via `ROUTE_TO_MODE` / `MODE_TO_ROUTE`
+- **Transitions**: Navigation uses the **View Transition API** (`document.startViewTransition`) with a fallback to `router.push`. CSS `view-transition-name` is set on `.mode` and `.dial`.
+- **Scroll-link**: On the home page, `useDial` listens to the `#mode-home` scroll container and updates `--home-scroll` CSS variable via `requestAnimationFrame`, moving the dial up in sync with scroll. The dial's CSS `transition` is suppressed during active scroll (`.no-transition` class) and restored 150ms after scroll stops.
+- **Keyboard**: Arrow keys navigate between modes in ORDER sequence.
+- **Wheel**: Scrolling on the dial itself steps through modes.
 
 ---
 
-## Styling
+## Layout System
 
-- **Tailwind utilities** throughout; no CSS Modules.
-- **Dark mode** is toggled manually by adding/removing the `dark` class on `<html>` (`helpers.js` + `Switch.jsx`). Tailwind's `darkMode: 'selector'` picks this up.
-- **CSS variables** `--bg-color-primary` set in `globals.css` for body background in each theme.
-- **Global rule:** `text-transform: lowercase` applied to `body` in `globals.css`.
+All section pages (`/`, `/work`, `/studio`, `/blog`, `/timeline`) are wrapped in `SiteLayout`, which renders:
 
----
+```
+#shell
+  header.topbar          ← sticky header via SiteHeader
+  .dial                  ← fixed-position mode dial
+  main.stage
+    .mode#mode-*         ← one per route, overflow-y: auto (the scroll container)
+  <CaseStudy />          ← slide-in overlay
+  <VideoModal />         ← portal modal for YouTube iframes
+```
 
-## Components
+`body { overflow: hidden }` — all scrolling happens inside `.mode` containers.
 
-### `Layout.js`
-Shell around every page. Renders the header text "hello", desktop nav tabs (from `NavItems`), a hamburger/mobile nav, and the `<Switch>` theme toggle. Active nav item is derived from `useRouter().pathname`.
-
-### `BlogPost.js`
-Wrapper used by every `.mdx` post. Injects a `<Head>` with Open Graph / canonical SEO tags built from the `meta` prop, renders the post title and date, then `{children}` (the MDX body).
-
-### `Switch.jsx`
-Single-purpose toggle button that calls `helpers.js` to flip the `dark` class and persist preference.
+**Blog post pages** (`/blog/*`) bypass `SiteLayout` entirely (detected in `_app.js` by `router.pathname.startsWith('/blog/')`). `BlogPost` renders its own layout using `SiteHeader` + a full-scroll `body.post` class that overrides `overflow: hidden`.
 
 ---
 
-## SEO
+## Context
 
-- `next/head` in each page file provides per-page `<title>`, `<meta description>`, Open Graph tags, and `<link rel="canonical">`.
-- Canonical base URL in page components: `https://saumyanayak.xyz`.
-- `next-sitemap` generates `sitemap.xml` and `robots.txt` into `public/` at build time; configured with `siteUrl: 'https://www.saumyaone.xyz'`.
+`SiteContext` (exported from `SiteLayout.js`) provides three functions to any child component:
 
-> ⚠️ Domain inconsistency: pages reference `saumyanayak.xyz`, `home-on-internet.vercel.app`, and `saumyaone.xyz` across different files. Consolidate to one canonical domain.
+| Function | Purpose |
+|----------|---------|
+| `navigateTo(modeId)` | View Transition-aware navigation to a mode |
+| `openCase(key)` | Opens the CaseStudy overlay for a key from `CASE_DATA` |
+| `openVideo(youtubeId)` | Opens VideoModal with an autoplaying YouTube iframe |
+
+Usage: `const { navigateTo, openCase, openVideo } = useContext(SiteContext)`
 
 ---
 
-## Known Issues
+## Blog System
 
-- `pages/reachme.js` has a malformed JSX fragment (`"re"` after `className`).
-- `pages/learnings.js` default export is named `Projects` (copy-paste artifact).
-- Multiple `WORK` entries share `id: 4`, causing duplicate React keys.
-- YouTube `API_KEY` is client-bundle-exposed via `next.config.js` `env:{}`.
+- Each post lives at `pages/blog/<slug>/index.mdx`
+- Every MDX file defines a `meta` object and wraps content in `<BlogPost meta={meta}>`
+- `getAllPosts.js` uses Node.js `fs` to scan `pages/blog/*/index.mdx`, parses `meta` via regex, and returns posts sorted newest-first
+- `getStaticProps` in `pages/blog.js` and `pages/index.js` call `getAllPosts()` at build time
+- Template for new posts: `pages/blog/_template.mdx`
+
+### Meta shape
+```js
+export const meta = {
+  title: 'Post Title',
+  date: 'YYYY-MM-DD',
+  description: 'One sentence description.',
+  image: '/path/to/cover.jpg',  // optional — shown as card thumbnail
+  readTime: 5,                  // minutes
+  tags: ['tag1', 'tag2'],
+}
+```
+
+---
+
+## Styling Notes
+
+- **No CSS Modules** — all styling is in `styles/site.css` (custom properties, plain class selectors)
+- **CSS variables** for all design tokens: `--ink`, `--paper`, `--gut`, `--base`, `--header-h`, `--amber`, `--ease`, etc.
+- **Dark mode** not implemented in the current version
+- **Responsive breakpoints**: 1080px (2-col cards), 900px (dial sizing), 820px (timeline), 560px (single-col), 425px (mobile hero centering + dial corner)
+- **`body { overflow: hidden }`** — scrolling is per-section inside `.mode` containers, except on blog post pages where `body.post { overflow: auto }` restores normal scroll

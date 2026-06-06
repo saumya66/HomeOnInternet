@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useReveal } from '../../hooks/useReveal'
 import { SiteContext } from '../SiteLayout'
 
-const CATEGORIES = ['All', 'Engineering', 'Life', 'Building in Public', 'Notes']
+const CATEGORIES = ['All', 'Engineering', 'Life']
 
 export default function BlogSection({ posts = [] }) {
   const { navigateTo } = useContext(SiteContext)
@@ -20,7 +20,7 @@ export default function BlogSection({ posts = [] }) {
             )
         )
 
-  const featuredPost = posts[0]
+  const featuredPost = posts[4]
   const listPosts = filtered.slice(featuredPost ? 1 : 0)
 
   return (

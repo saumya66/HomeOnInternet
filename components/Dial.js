@@ -62,10 +62,14 @@ export default function Dial({
   /* measure deco div after mount to position ticks */
   useEffect(() => {
     if (!decoRef.current) return
-    const measure = () => setTicks(buildTickStyles(decoRef.current.offsetWidth))
+    const el = decoRef.current
+    const measure = () => {
+      if (!el) return
+      setTicks(buildTickStyles(el.offsetWidth))
+    }
     measure()
     const ro = new ResizeObserver(measure)
-    ro.observe(decoRef.current)
+    ro.observe(el)
     return () => ro.disconnect()
   }, [])
 

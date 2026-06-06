@@ -53,6 +53,43 @@ export function useDial() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  /* scroll-link: move dial up by scrollTop while on home page */
+  useEffect(() => {
+    const section = document.getElementById('mode-home')
+    if (!section || currentMode !== 'home') {
+      document.body.style.removeProperty('--home-scroll')
+      return
+    }
+
+    let ticking = false
+    let stopTimer = null
+
+    function onScroll() {
+      // suppress the slow CSS transition so scroll feels instant
+      dialRef.current?.classList.add('no-transition')
+      clearTimeout(stopTimer)
+      stopTimer = setTimeout(() => {
+        dialRef.current?.classList.remove('no-transition')
+      }, 150)
+
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          document.body.style.setProperty('--home-scroll', section.scrollTop + 'px')
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    section.addEventListener('scroll', onScroll, { passive: true })
+    document.body.style.setProperty('--home-scroll', section.scrollTop + 'px')
+
+    return () => {
+      section.removeEventListener('scroll', onScroll)
+      clearTimeout(stopTimer)
+      document.body.style.removeProperty('--home-scroll')
+    }
+  }, [currentMode])
   /* sync rotation when route changes via browser nav / links */
   useEffect(() => {
     if (draggingRef.current) return

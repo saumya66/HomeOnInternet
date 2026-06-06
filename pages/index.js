@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import HomeSection from '../components/sections/HomeSection'
+import { getAllPosts } from '../getAllPosts'
 
-export default function HomePage() {
+export default function HomePage({ latestPost }) {
   return (
     <>
       <Head>
@@ -18,7 +19,13 @@ export default function HomePage() {
         <meta property="og:url" content="https://saumyanayak.xyz" />
         <link rel="canonical" href="https://saumyanayak.xyz" />
       </Head>
-      <HomeSection />
+      <HomeSection latestPost={latestPost} />
     </>
   )
+}
+
+export async function getStaticProps() {
+  let posts = []
+  try { posts = getAllPosts() } catch {}
+  return { props: { latestPost: posts[4] || null } }
 }

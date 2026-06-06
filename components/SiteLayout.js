@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Dial from './Dial'
 import CaseStudy from './CaseStudy'
+import VideoModal from './VideoModal'
 import { useDial } from '../hooks/useDial'
 import { CASE_DATA } from '../data/siteData'
 
@@ -9,6 +10,7 @@ export const SiteContext = createContext({
   navigateTo: () => {},
   currentMode: 'home',
   openCase: () => {},
+  openVideo: () => {},
 })
 
 export default function SiteLayout({ children }) {
@@ -28,6 +30,15 @@ export default function SiteLayout({ children }) {
   } = useDial()
 
   const [caseKey, setCaseKey] = useState(null)
+  const [activeVideoId, setActiveVideoId] = useState(null)
+
+  function openCase(key) {
+    if (CASE_DATA[key]) setCaseKey(key)
+  }
+
+  function openVideo(id) {
+    setActiveVideoId(id || null)
+  }
 
   /* keep body data-mode in sync with the current route */
   useEffect(() => {
@@ -44,15 +55,11 @@ export default function SiteLayout({ children }) {
   }
 
   return (
-    <SiteContext.Provider value={{ navigateTo, currentMode, openCase }}>
+    <SiteContext.Provider value={{ navigateTo, currentMode, openCase, openVideo }}>
       <div id="shell">
         <header className="topbar">
           <div className="topbar-inner">
-            <button
-              className="brand"
-              onClick={() => navigateTo('home')}
-              aria-label="Saumya Nayak — home"
-            >
+            <button className="brand" onClick={() => navigateTo('home')} aria-label="Saumya Nayak — home">
               <span className="sig hand">Saumya Nayak</span>
             </button>
           </div>
@@ -80,6 +87,11 @@ export default function SiteLayout({ children }) {
       <CaseStudy
         data={caseKey ? CASE_DATA[caseKey] : null}
         onClose={() => setCaseKey(null)}
+      />
+
+      <VideoModal
+        videoId={activeVideoId}
+        onClose={() => setActiveVideoId(null)}
       />
     </SiteContext.Provider>
   )
