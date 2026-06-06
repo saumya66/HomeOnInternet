@@ -10,20 +10,39 @@ export default function HomeSection() {
     <section className="mode active" id="mode-home" ref={sectionRef}>
       <div className="wrap home-wrap">
         <div className="hero-top">
-          <h1 className="bigline serif">
-            Building systems.<br />
-            Documenting the <span className="ital">journey.</span><br />
-            Creating <span className="ital">memories.</span>
-          </h1>
-          <div className="now-cue">
-            <span className="hand">
-              This is what&apos;s happening <u>now</u>.
+          <h1 className="bigline serif">Hi, I&apos;m Saumya.</h1>
+          <p className="hero-sub hand">
+            I love creating things.
+            {/* <svg className="nowarrow" viewBox="0 0 64 32" aria-hidden="true">
+              <path className="a" d="M 2 8 C 18 2 46 6 52 26" />
+              <path className="b" d="M 42 20 L 52 30 L 62 20" />
+            </svg> */}
+          </p>
+          {/* <p className="hero-what serif">
+            Most often that&apos;s <span className="hl">software</span>.<br />
+            Hopefully <span className="hl">hardware</span> someday.
+          </p> */}
+          <p className="hero-body">
+            Most often that&apos;s software. Other times I like capturing life through my camera
+            & creating cinematic videos & photographs. I try to write blogs often sharing my learnings, 
+            read widely, sing songs & go on long bike rides <span className="hand hero-aside-inline">(350kms longest so far)</span>. I like hitting the gym & running <span className="hand hero-aside-inline">(current PR is 5k)</span>.
+          </p>
+          <blockquote className="hero-aside hand">
+            This little corner of the internet is where I share all of it.
+          </blockquote>
+        </div>
+
+        <div className="now-cue">
+          <span className="hand">
+            This is what&apos;s happening{' '}
+            <span style={{ position: 'relative', whiteSpace: 'nowrap' }}>
+              <u>now</u>.
+              <svg className="nowarrow" viewBox="0 0 64 32" aria-hidden="true">
+                <path className="a" d="M 2 8 C 18 2 46 6 52 26" />
+                <path className="b" d="M 42 20 L 52 30 L 62 20" />
+              </svg>
             </span>
-            <svg className="nowarrow" viewBox="0 0 170 70" aria-hidden="true">
-              <path className="a" d="M6 14 C 46 6 60 46 120 44" />
-              <path className="b" d="M104 33 L126 45 L106 56" />
-            </svg>
-          </div>
+          </span>
         </div>
 
         <div className="now-cards">

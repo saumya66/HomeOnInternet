@@ -30,6 +30,7 @@
   --mark-deep:  #8F3320;
   --led:        #5E9A57;
   --led-deep:   #3E6E3A;
+  --amber:      #c47b2b;
   --serif: 'Newsreader', 'Times New Roman', Georgia, serif;
   --sans:  'Hanken Grotesk', Helvetica, Arial, sans-serif;
   --mono:  'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
@@ -221,7 +222,7 @@ html:not(.js) .cp-text { opacity: 1 !important; transform: none !important; }
 body[data-mode="home"] .dial {
   transform: translate(
     min(calc(100vw - var(--base) - var(--rgap)), calc(50vw + 534px - var(--base))),
-    calc(27svh - var(--base) / 2)
+    calc(27svh - var(--base) / 2 - 50px)
   );
 }
 body:not([data-mode="home"]) .dial {
@@ -367,9 +368,9 @@ body[data-mode="home"] .dial.nudge .dial-disc { animation: dialNudge 1.7s var(--
 }
 
 @media (max-width: 900px) {
-  .dial { --base: clamp(230px, 64vw, 300px); --corner: 0.5; }
+  .dial { --base: clamp(140px, 38vw, 180px); --corner: 0.5; }
   body[data-mode="home"] .dial {
-    transform: translate(calc(50vw - var(--base)/2), calc(100svh - var(--base) - 40px));
+    transform: translate(calc(100vw - var(--base) - 12px), calc(var(--header-h) + 8px));
   }
   body:not([data-mode="home"]) .dial {
     transform: translate(calc(100vw - var(--base) * var(--corner) - 12px),
@@ -392,21 +393,49 @@ body[data-mode="home"] .dial.nudge .dial-disc { animation: dialNudge 1.7s var(--
 
 .hero-top { max-width: min(54vw, 720px); }
 .bigline {
-  font-weight: 400; font-size: clamp(30px, 4.7vw, 70px); line-height: 1.04;
-  letter-spacing: -0.022em; color: var(--ink); text-wrap: balance;
+  font-weight: 400; font-size: clamp(32px, 5vw, 72px); line-height: 1.04;
+  letter-spacing: -0.022em; color: var(--ink);
 }
-.bigline .ital { font-style: italic; }
-
-.now-cue { margin-top: clamp(14px, 2.2vh, 30px); position: relative; width: 320px; max-width: 60vw; }
-.now-cue .hand { font-family: var(--hand); font-weight: 500; font-size: clamp(20px, 2.2vw, 27px);
-  color: var(--ink-80); }
+.hero-sub {
+  font-family: var(--hand); font-weight: 500;
+  font-size: clamp(22px, 2.4vw, 34px); color: var(--amber);
+  margin-top: clamp(4px, 0.8vh, 10px); display: block;
+  text-decoration: underline; text-decoration-color: var(--amber);
+  text-underline-offset: 4px; text-decoration-thickness: 1.5px;
+}
+.hero-what {
+  font-size: clamp(20px, 2.2vw, 30px); line-height: 1.25;
+  letter-spacing: -0.015em; color: var(--ink);
+  margin-top: clamp(14px, 2vh, 24px);
+}
+.hero-what .hl { color: var(--amber); }
+.hero-body {
+  font-size: clamp(20px, 1.1vw, 15px); line-height: 1.65;
+  margin-top: clamp(12px, 1.6vh, 20px); max-width: 52ch;
+}
+.hero-aside-inline {
+  font-size: 0.95em; color: var(--ink-80); font-weight: 500;
+}
+.hero-aside {
+  font-family: var(--hand); font-size: clamp(16px, 1.5vw, 20px); color: var(--ink-80);
+  margin-top: clamp(16px, 2vh, 26px); margin-left: 0;
+  border-left: 2.5px solid var(--ink-25); padding-left: 16px;
+  font-style: normal; line-height: 1.4;
+}
+.now-cue {
+  margin-top: clamp(20px, 3vh, 40px);
+}
+.now-cue .hand {
+  font-family: var(--hand); font-weight: 500; font-size: clamp(18px, 2vw, 26px);
+  color: var(--ink-80);
+}
 .now-cue .hand u { text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
-.nowarrow { display: block; width: clamp(120px, 12vw, 168px); height: auto; margin-top: 2px; overflow: visible; }
-.nowarrow path { fill: none; stroke: var(--ink-80); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.nowarrow .a { stroke-dasharray: 220; stroke-dashoffset: 220; }
-.nowarrow .b { stroke-dasharray: 80; stroke-dashoffset: 80; }
-.mode.active .nowarrow .a { animation: draw 0.9s var(--ease) 0.5s forwards; }
-.mode.active .nowarrow .b { animation: draw 0.4s var(--ease) 1.2s forwards; }
+.mode.active .nowarrow .a { animation: draw 1.6s var(--ease) 0.7s forwards; }
+.mode.active .nowarrow .b { animation: draw 0.6s var(--ease) 2.1s forwards; }
+.nowarrow { display: inline-block; vertical-align: middle; width: clamp(40px, 5vw, 58px); height: auto; margin-left: 5px; margin-top: 8px; overflow: visible; }
+.nowarrow path { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.nowarrow .a { stroke-dasharray: 150; stroke-dashoffset: 150; }
+.nowarrow .b { stroke-dasharray: 50; stroke-dashoffset: 50; }
 
 .now-cards {
   margin-top: clamp(14px, 2vh, 26px);
